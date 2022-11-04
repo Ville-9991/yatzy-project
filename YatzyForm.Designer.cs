@@ -30,6 +30,7 @@ partial class YatzyForm
     {
             this.diceWindow = new System.Windows.Forms.GroupBox();
             this.throwDice_btn = new System.Windows.Forms.Button();
+            this.allowedNumberOfThrows = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // diceWindow
@@ -44,7 +45,7 @@ partial class YatzyForm
             // 
             // throwDice_btn
             // 
-            this.throwDice_btn.Location = new System.Drawing.Point(505, 484);
+            this.throwDice_btn.Location = new System.Drawing.Point(482, 484);
             this.throwDice_btn.Name = "throwDice_btn";
             this.throwDice_btn.Size = new System.Drawing.Size(98, 46);
             this.throwDice_btn.TabIndex = 1;
@@ -52,11 +53,22 @@ partial class YatzyForm
             this.throwDice_btn.UseVisualStyleBackColor = true;
             this.throwDice_btn.Click += new System.EventHandler(this.throwDice_btn_Click);
             // 
+            // allowedNumberOfThrows
+            // 
+            this.allowedNumberOfThrows.AutoSize = true;
+            this.allowedNumberOfThrows.Font = new System.Drawing.Font("Helvetica", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.allowedNumberOfThrows.Location = new System.Drawing.Point(586, 490);
+            this.allowedNumberOfThrows.Name = "allowedNumberOfThrows";
+            this.allowedNumberOfThrows.Size = new System.Drawing.Size(56, 35);
+            this.allowedNumberOfThrows.TabIndex = 2;
+            this.allowedNumberOfThrows.Text = "3";
+            // 
             // YatzyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(654, 651);
+            this.Controls.Add(this.allowedNumberOfThrows);
             this.Controls.Add(this.throwDice_btn);
             this.Controls.Add(this.diceWindow);
             this.Font = new System.Drawing.Font("Helvetica", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -66,6 +78,7 @@ partial class YatzyForm
             this.Name = "YatzyForm";
             this.Text = "Yatzy";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
     }
 
@@ -73,4 +86,5 @@ partial class YatzyForm
 
     private GroupBox diceWindow;
     private Button throwDice_btn;
+    private Label allowedNumberOfThrows;
 }

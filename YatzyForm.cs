@@ -12,10 +12,28 @@ public partial class YatzyForm : Form
 
     private void throwDice_btn_Click(object sender, EventArgs e)
     {
+        int throws_left = Int32.Parse(allowedNumberOfThrows.Text); // heittoja on aluksi kolme
         
-        int dice_result = throwDice();
-        diceList.Add(new Dice(dice_result));
+        // if (throws_left  == 1){
+        //     throwDice_btn.Enabled = false;
+        // }
+
+        List<int> diceResultList = new List<int>();
+
+        for(int number_of_dice = 0; number_of_dice < 5; number_of_dice++){
+            int dice_result = throwDice();
+            diceResultList.Add(dice_result);
+        }
+
+        for(int index = 0; index < diceResultList.Count(); index++){
+            diceList.Add(new Dice(diceResultList[index]));
+        }
+
         diceWindow.Invalidate();
+
+
+        allowedNumberOfThrows.Text = Convert.ToString(throws_left -1);
+
     }
 
     private int throwDice(){
@@ -28,12 +46,15 @@ public partial class YatzyForm : Form
     {
 
         Random rng = new Random();
-        int locationX = rng.Next(0, 500);
-        int locationY = rng.Next(0, 250);
 
-        foreach(Dice dice in diceList){
-            Bitmap img = new Bitmap(filename: $"img\\Dice{dice.dice_value}.png");
+        for(int index = 0; index < diceList.Count(); index++){
+
+            int locationX = rng.Next(0, 500);
+            int locationY = rng.Next(0, 250);
+
+            Bitmap img = new Bitmap(filename: $"img\\Dice{diceList[index].dice_value}.png");
             e.Graphics.DrawImage(img, locationX, locationY);
+
         }
 
         diceList.Clear(); // noppalista on tyhjennettävä, muuten joka kerralla luodaan aina lisää noppia...
