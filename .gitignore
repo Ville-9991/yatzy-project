@@ -1,0 +1,10 @@
+planning/
+bin/
+obj/
+.vs/
+.vscode/
+
+*.csproj
+*.sln
+*.user
+*.resx
