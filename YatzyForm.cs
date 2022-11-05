@@ -14,9 +14,9 @@ public partial class YatzyForm : Form
     {
         int throws_left = Int32.Parse(allowedNumberOfThrows.Text); // heittoja on aluksi kolme
         
-        // if (throws_left  == 1){
-        //     throwDice_btn.Enabled = false;
-        // }
+        if (throws_left  == 1){
+            throwDice_btn.Enabled = false;
+        }
 
         List<int> diceResultList = new List<int>();
 

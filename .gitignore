@@ -4,7 +4,6 @@ obj/
 .vs/
 .vscode/
 
-*.csproj
 *.sln
 *.user
 *.resx
