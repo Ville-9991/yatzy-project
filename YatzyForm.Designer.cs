@@ -31,6 +31,7 @@ partial class YatzyForm
             this.diceWindow = new System.Windows.Forms.GroupBox();
             this.throwDice_btn = new System.Windows.Forms.Button();
             this.allowedNumberOfThrows = new System.Windows.Forms.Label();
+            this.diceResultsWindow = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
             // 
             // diceWindow
@@ -56,22 +57,32 @@ partial class YatzyForm
             // allowedNumberOfThrows
             // 
             this.allowedNumberOfThrows.AutoSize = true;
-            this.allowedNumberOfThrows.Font = new System.Drawing.Font("Helvetica", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.allowedNumberOfThrows.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.allowedNumberOfThrows.Location = new System.Drawing.Point(586, 490);
             this.allowedNumberOfThrows.Name = "allowedNumberOfThrows";
-            this.allowedNumberOfThrows.Size = new System.Drawing.Size(56, 35);
+            this.allowedNumberOfThrows.Size = new System.Drawing.Size(31, 33);
             this.allowedNumberOfThrows.TabIndex = 2;
             this.allowedNumberOfThrows.Text = "3";
+            // 
+            // diceResultsWindow
+            // 
+            this.diceResultsWindow.Location = new System.Drawing.Point(9, 457);
+            this.diceResultsWindow.Name = "diceResultsWindow";
+            this.diceResultsWindow.Size = new System.Drawing.Size(470, 100);
+            this.diceResultsWindow.TabIndex = 3;
+            this.diceResultsWindow.TabStop = false;
+            this.diceResultsWindow.Paint += new System.Windows.Forms.PaintEventHandler(this.diceResultsWindow_Paint);
             // 
             // YatzyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(654, 651);
+            this.Controls.Add(this.diceResultsWindow);
             this.Controls.Add(this.allowedNumberOfThrows);
             this.Controls.Add(this.throwDice_btn);
             this.Controls.Add(this.diceWindow);
-            this.Font = new System.Drawing.Font("Helvetica", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
@@ -87,4 +98,5 @@ partial class YatzyForm
     private GroupBox diceWindow;
     private Button throwDice_btn;
     private Label allowedNumberOfThrows;
+    private GroupBox diceResultsWindow;
 }

@@ -31,6 +31,7 @@ public partial class YatzyForm : Form
         diceResultList.Clear();
 
         diceWindow.Invalidate();
+        diceResultsWindow.Invalidate();
         allowedNumberOfThrows.Text = Convert.ToString(throws_left -1);
 
     }
@@ -58,57 +59,91 @@ public partial class YatzyForm : Form
 
         Random rng = new Random(); // siajinnit on satunnaisia, jotta voidaan simuloida 2d noppien "autenttisuus"
 
-        // lisätään tyhjä rectangle listaan, jotta if tarkastus voi ohittaa sen myöhemmin
-        // storedRectangles.Add(image_dimensions);
-
         for(int index = 0; index < diceList.Count(); index++){
-            Bitmap img = new Bitmap(filename: $"img\\Dice{diceList[index].dice_value}.png");
+            // suorakulmioiden mittojen määrittäminen/sijaintin arvonta
 
-            pointX = rng.Next(0, diceWindow.Size.Width-img_width);
-            pointY = rng.Next(0, diceWindow.Size.Height-img_height);
+            pointX = rng.Next(0, diceWindow.Size.Width-(img_width*2));
+            pointY = rng.Next(0, diceWindow.Size.Height-(img_height*2));
 
             image_dimensions.X = pointX;
             image_dimensions.Y = pointY;
 
             storedRectangles.Add(image_dimensions);
 
-            if(index == 0){
-                // ekalla kierroksella voi mennä suoraan tänne, koska ei ole tarvetta tarkastaa
-                // kuvien päällekäisyyttä
-                e.Graphics.DrawImage(img, storedRectangles[index]);
-            }
-            else{
+            if (index != 0){
+                foreach(Rectangle rect in storedRectangles.ToList()){
 
-                foreach(var rect in storedRectangles.ToList()){
+                    if(storedRectangles[index].IntersectsWith(rect)){
 
-                // tämän tarkastuksen takia kierrokset oli eroteltava, koska muuten kuvaa ei piirrettä
-                // (ensimmäisellä kierroksella ehto on aina tosi)
-                if(image_dimensions.IntersectsWith(rect)){ 
+                        if(storedRectangles[index].X < rect.X && storedRectangles[index].Y > rect.Y){
+                            storedRectangles[index] = new Rectangle(rect.X + 50, rect.Y, img_width, img_height);
+                        }
 
-                    int colliding_item = storedRectangles.FindIndex(r => r == rect);
-                    if (colliding_item != -1){
-                        // en käytä nyt enempää aikaa hiusten repimiseen ja random sijaintien päällekkäisyyden tarkastamiseen/korjaamiseen
-                        // saa luvan kelvata
-                        storedRectangles[colliding_item] = new Rectangle(rng.Next(0, img_width), rng.Next(0, img_height), img_width, img_height);
+                        else if(storedRectangles[index].X > rect.X && storedRectangles[index].Y < rect.Y){
+                            storedRectangles[index] = new Rectangle(rect.X, rect.Y + 50, img_width, img_height);
+                        }
+
+                        else if(storedRectangles[index].X == rect.X && storedRectangles[index].Y == rect.Y){
+                            storedRectangles[index] = new Rectangle(rect.X + 50, rect.Y + 50, img_width, img_height);
+                        }
+
                     }
-                    
-                }
 
-                else{
-                    e.Graphics.DrawImage(img, storedRectangles[index]);
                 }
-
-            }
-                
             }
 
+        }
+
+        for(int index = 0; index < diceList.Count(); index++){
+            // kuvien sijoittaminen suorakulmioiden mukaan
+
+            Bitmap img = new Bitmap(filename: $"img\\Dice{diceList[index].dice_value}.png");
+            e.Graphics.DrawImage(img, storedRectangles[index]);
         }
 
         storedRectangles.Clear();
         diceList.Clear(); // noppalista on tyhjennettävä, muuten joka kerralla luodaan aina lisää noppia...
 
     }
-    
+
+    private void diceResultsWindow_Paint(object sender, PaintEventArgs e)
+    {
+
+        int img_width = 75;
+        int img_height = 75;
+        int pointX = img_width/4;
+        int pointY = diceResultsWindow.Height-img_height;
+
+        // muuttuja, joka tekee hieman väliä seuraaville kuville
+        // älä muuta. Toimii vain 1:1 kuville
+        int margin = (((img_width/2)*2)+img_width/4); // 112,5
+
+        List<Rectangle> storedRectangles = new List<Rectangle>();
+        Rectangle image_dimensions = new Rectangle(pointX, pointY, img_width, img_height);
+
+        List<int> diceResultList = new List<int>();
+
+        foreach(Dice dice in diceList){
+            diceResultList.Add(dice.dice_value);
+        }
+
+        // diceList.Sort();
+        for(int index = 0; index < diceResultList.Count(); index++){
+            Bitmap img = new Bitmap(filename: $"img\\Dice{diceResultList[index]}.png");
+
+            storedRectangles.Add(image_dimensions);
+            
+            if(index == 0){
+                e.Graphics.DrawImage(img, storedRectangles[index]);
+            }
+            else{
+                storedRectangles[index] = new Rectangle(storedRectangles[index-1].X + margin, pointY, img_width, img_height);
+                e.Graphics.DrawImage(img, storedRectangles[index]);
+            }
+            
+        }
+        
+    }
 }
 
 class Dice{ // luokka, joka ottaa talteen nopan arvon, jotta sitä voidaan käyttää muissakin "eventeissä"
