@@ -38,6 +38,11 @@ partial class YatzyForm
             this.diceButton4 = new System.Windows.Forms.PictureBox();
             this.diceButton5 = new System.Windows.Forms.PictureBox();
             this.diceResultsWindow.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.diceButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diceButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diceButton3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diceButton4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diceButton5)).BeginInit();
             this.SuspendLayout();
             // 
             // diceWindow
@@ -80,45 +85,56 @@ partial class YatzyForm
             this.diceResultsWindow.Name = "diceResultsWindow";
             this.diceResultsWindow.Size = new System.Drawing.Size(470, 100);
             this.diceResultsWindow.TabIndex = 3;
+            // this.diceResultsWindow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.resultsWindow_mouseDown_Event);
             // 
             // diceButton1
             // 
+            this.diceButton1.Enabled = false;
             this.diceButton1.Location = new System.Drawing.Point(18, 25);
             this.diceButton1.Name = "diceButton1";
             this.diceButton1.Size = new System.Drawing.Size(75, 75);
             this.diceButton1.TabIndex = 0;
+            this.diceButton1.TabStop = false;
             this.diceButton1.Paint += new System.Windows.Forms.PaintEventHandler(this.diceButton1_Paint);
             // 
             // diceButton2
             // 
+            this.diceButton2.Enabled = false;
             this.diceButton2.Location = new System.Drawing.Point(110, 25);
             this.diceButton2.Name = "diceButton2";
             this.diceButton2.Size = new System.Drawing.Size(75, 75);
             this.diceButton2.TabIndex = 0;
+            this.diceButton2.TabStop = false;
             this.diceButton2.Paint += new System.Windows.Forms.PaintEventHandler(this.diceButton2_Paint);
             // 
             // diceButton3
             // 
+            this.diceButton3.Enabled = false;
             this.diceButton3.Location = new System.Drawing.Point(202, 25);
             this.diceButton3.Name = "diceButton3";
             this.diceButton3.Size = new System.Drawing.Size(75, 75);
             this.diceButton3.TabIndex = 0;
+            this.diceButton3.TabStop = false;
             this.diceButton3.Paint += new System.Windows.Forms.PaintEventHandler(this.diceButton3_Paint);
             // 
             // diceButton4
             // 
+            this.diceButton4.Enabled = false;
             this.diceButton4.Location = new System.Drawing.Point(294, 25);
             this.diceButton4.Name = "diceButton4";
             this.diceButton4.Size = new System.Drawing.Size(75, 75);
             this.diceButton4.TabIndex = 0;
+            this.diceButton4.TabStop = false;
             this.diceButton4.Paint += new System.Windows.Forms.PaintEventHandler(this.diceButton4_Paint);
             // 
             // diceButton5
             // 
+            this.diceButton5.Enabled = false;
             this.diceButton5.Location = new System.Drawing.Point(386, 25);
             this.diceButton5.Name = "diceButton5";
             this.diceButton5.Size = new System.Drawing.Size(75, 75);
             this.diceButton5.TabIndex = 0;
+            this.diceButton5.TabStop = false;
             this.diceButton5.Paint += new System.Windows.Forms.PaintEventHandler(this.diceButton5_Paint);
             // 
             // YatzyForm
@@ -137,6 +153,11 @@ partial class YatzyForm
             this.Name = "YatzyForm";
             this.Text = "Yatzy";
             this.diceResultsWindow.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.diceButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diceButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diceButton3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diceButton4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diceButton5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

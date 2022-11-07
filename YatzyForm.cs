@@ -32,15 +32,9 @@ public partial class YatzyForm : Form
 
         diceResultList.Clear();
 
-        diceWindow.Invalidate();
-
-        diceButton1.Invalidate();
-        diceButton2.Invalidate();
-        diceButton3.Invalidate();
-        diceButton4.Invalidate();
-        diceButton5.Invalidate();
-
         allowedNumberOfThrows.Text = Convert.ToString(throws_left -1);
+
+        enableDiceButtons();
 
     }
 
@@ -48,6 +42,30 @@ public partial class YatzyForm : Form
         Random rng = new Random();
         int value = rng.Next(1, 7);
         return value;
+    }
+
+    private bool dice_IsThrown = false;
+
+    private void enableDiceButtons(){
+
+        dice_IsThrown = true;
+        diceWindow.Invalidate();
+
+        var dice_button_list = getAllPictureBoxes();
+
+        foreach(PictureBox dice_button in dice_button_list){
+            dice_button.Invalidate();
+            dice_button.Enabled = true;
+        }
+    }
+
+    private List<PictureBox> getAllPictureBoxes(){
+        List<PictureBox> pictureBoxes = new List<PictureBox>();
+
+        foreach (PictureBox control in diceResultsWindow.Controls){
+            pictureBoxes.Add(control);
+        }
+        return pictureBoxes;
     }
 
     // leveys ja pituus ovat luokan sisäisesti "globaaleja", jotta niitä voi käyttää kaikissa funktioissa
@@ -118,66 +136,107 @@ public partial class YatzyForm : Form
 
     List<DiceImage> diceImageList = new List<DiceImage>();
 
+    #region Dice Button Paint events
     private void diceButton1_Paint(object sender, PaintEventArgs e){
-        try{ // koska paint event latautuu heti, eikä kuvaa/listan elementtejä ole vielä "olemassakaan" ennen kuin noppaa heitetään
+             // koska paint event latautuu heti, eikä kuvaa/listan elementtejä ole vielä "olemassakaan" ennen kuin noppaa heitetään
             // tulee error, jokka "voidaan" ohittaa
-            e.Graphics.DrawImage(diceImageList[0].dice_image, 0, 0, img_width, img_height);
-        }
-        catch{
-            return;
-        }
+            if(dice_IsThrown){
+                e.Graphics.DrawImage(diceImageList[0].dice_image, 0, 0, img_width, img_height);
+            }
     }
 
+    // private void resultsWindow_mouseDown_Event(object sender, MouseEventArgs e)
+    // {
+    //     Console.WriteLine(Cursor.Position);
+    // }
+
     private void diceButton2_Paint(object sender, PaintEventArgs e){
-        try{
+        if(dice_IsThrown){
             e.Graphics.DrawImage(diceImageList[1].dice_image, 0, 0, img_width, img_height);
-        }
-        catch{
-            return;
         }
     }
 
     private void diceButton3_Paint(object sender, PaintEventArgs e){
-        try{
+        if(dice_IsThrown){
             e.Graphics.DrawImage(diceImageList[2].dice_image, 0, 0, img_width, img_height);
-        }
-        catch{
-            return;
         }
     }
 
     private void diceButton4_Paint(object sender, PaintEventArgs e){
-        try{
+        if(dice_IsThrown){
             e.Graphics.DrawImage(diceImageList[3].dice_image, 0, 0, img_width, img_height);
-        }
-        catch{
-            return;
         }
     }
 
     private void diceButton5_Paint(object sender, PaintEventArgs e){
-        try{
+        if(dice_IsThrown){
             e.Graphics.DrawImage(diceImageList[4].dice_image, 0, 0, img_width, img_height);
         }
-        catch{
-            return;
+    }
+    #endregion
+
+    // #region Dice Button click functions
+    // private void diceButton1_Click(object sender, EventArgs e){
+    //     diceButton1.Enabled = false;
+    //     Console.WriteLine("test");
+    // }
+
+    // private void diceButton2_Click(object sender, EventArgs e){
+    //     diceButton2.Enabled = false;
+    // }
+
+    // private void diceButton3_Click(object sender, EventArgs e){
+    //     diceButton3.Enabled = false;
+    // }
+
+    // private void diceButton4_Click(object sender, EventArgs e){
+    //     diceButton4.Enabled = false;
+    // }
+
+    // private void diceButton5_Click(object sender, EventArgs e){
+    //     diceButton5.Enabled = false;
+    // }
+    // #endregion
+
+    private bool[] dice_selected = {false, false, false, false, false};
+
+    #region Custom Classes
+    class Dice{ // luokka, joka ottaa talteen nopan arvon, jotta sitä voidaan käyttää muissakin eventeissä
+        public int dice_value {get; set;}
+        public bool selected = false;
+        // public int posiotionX {get; set;}
+        // public int posiotionY {get; set;}
+        // public int width {get; set;}
+        // public int height {get; set;}
+ 
+
+        public Dice(int dice_value){
+            this.dice_value = dice_value;
+        }
+
+        public void DrawDice(){
+
+            Bitmap dice_image = new Bitmap(filename: $"img\\Dice{this.dice_value}.png");
+
+            // YatzyForm form = new YatzyForm();
+
+            // // if(selected){
+                
+            // // }
+        }
+
+        // private void CheckIfDiceIsClicked(Point location){
+        //     if 
+        // }
+
+    }
+
+    class DiceImage{ // luokka, joka ottaa talteen bitmap olion, jolla on filename mukana
+        public Bitmap dice_image {get; set;}
+
+        public DiceImage(Bitmap bitmap_file_path){
+            dice_image = bitmap_file_path;
         }
     }
-}
-
-class Dice{ // luokka, joka ottaa talteen nopan arvon, jotta sitä voidaan käyttää muissakin eventeissä
-    public int dice_value {get; set;}
-
-    public Dice(int value){
-        dice_value = value;
-    }
-
-}
-
-class DiceImage{ // luokka, joka ottaa talteen bitmap olion, jolla on filename mukana
-    public Bitmap dice_image {get; set;}
-
-    public DiceImage(Bitmap bitmap_file_path){
-        dice_image = bitmap_file_path;
-    }
+    #endregion
 }
