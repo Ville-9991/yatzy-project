@@ -28,10 +28,16 @@ partial class YatzyForm
     /// </summary>
     private void InitializeComponent()
     {
-            this.diceWindow = new System.Windows.Forms.GroupBox();
+            this.diceWindow = new System.Windows.Forms.Panel();
             this.throwDice_btn = new System.Windows.Forms.Button();
             this.allowedNumberOfThrows = new System.Windows.Forms.Label();
-            this.diceResultsWindow = new System.Windows.Forms.GroupBox();
+            this.diceResultsWindow = new System.Windows.Forms.Panel();
+            this.diceButton1 = new System.Windows.Forms.PictureBox();
+            this.diceButton2 = new System.Windows.Forms.PictureBox();
+            this.diceButton3 = new System.Windows.Forms.PictureBox();
+            this.diceButton4 = new System.Windows.Forms.PictureBox();
+            this.diceButton5 = new System.Windows.Forms.PictureBox();
+            this.diceResultsWindow.SuspendLayout();
             this.SuspendLayout();
             // 
             // diceWindow
@@ -41,7 +47,6 @@ partial class YatzyForm
             this.diceWindow.Name = "diceWindow";
             this.diceWindow.Size = new System.Drawing.Size(654, 404);
             this.diceWindow.TabIndex = 0;
-            this.diceWindow.TabStop = false;
             this.diceWindow.Paint += new System.Windows.Forms.PaintEventHandler(this.diceWindow_Paint);
             // 
             // throwDice_btn
@@ -66,12 +71,55 @@ partial class YatzyForm
             // 
             // diceResultsWindow
             // 
+            this.diceResultsWindow.Controls.Add(this.diceButton1);
+            this.diceResultsWindow.Controls.Add(this.diceButton2);
+            this.diceResultsWindow.Controls.Add(this.diceButton3);
+            this.diceResultsWindow.Controls.Add(this.diceButton4);
+            this.diceResultsWindow.Controls.Add(this.diceButton5);
             this.diceResultsWindow.Location = new System.Drawing.Point(9, 457);
             this.diceResultsWindow.Name = "diceResultsWindow";
             this.diceResultsWindow.Size = new System.Drawing.Size(470, 100);
             this.diceResultsWindow.TabIndex = 3;
-            this.diceResultsWindow.TabStop = false;
-            this.diceResultsWindow.Paint += new System.Windows.Forms.PaintEventHandler(this.diceResultsWindow_Paint);
+            // 
+            // diceButton1
+            // 
+            this.diceButton1.Location = new System.Drawing.Point(18, 25);
+            this.diceButton1.Name = "diceButton1";
+            this.diceButton1.Size = new System.Drawing.Size(75, 75);
+            this.diceButton1.TabIndex = 0;
+            this.diceButton1.Paint += new System.Windows.Forms.PaintEventHandler(this.diceButton1_Paint);
+            // 
+            // diceButton2
+            // 
+            this.diceButton2.Location = new System.Drawing.Point(110, 25);
+            this.diceButton2.Name = "diceButton2";
+            this.diceButton2.Size = new System.Drawing.Size(75, 75);
+            this.diceButton2.TabIndex = 0;
+            this.diceButton2.Paint += new System.Windows.Forms.PaintEventHandler(this.diceButton2_Paint);
+            // 
+            // diceButton3
+            // 
+            this.diceButton3.Location = new System.Drawing.Point(202, 25);
+            this.diceButton3.Name = "diceButton3";
+            this.diceButton3.Size = new System.Drawing.Size(75, 75);
+            this.diceButton3.TabIndex = 0;
+            this.diceButton3.Paint += new System.Windows.Forms.PaintEventHandler(this.diceButton3_Paint);
+            // 
+            // diceButton4
+            // 
+            this.diceButton4.Location = new System.Drawing.Point(294, 25);
+            this.diceButton4.Name = "diceButton4";
+            this.diceButton4.Size = new System.Drawing.Size(75, 75);
+            this.diceButton4.TabIndex = 0;
+            this.diceButton4.Paint += new System.Windows.Forms.PaintEventHandler(this.diceButton4_Paint);
+            // 
+            // diceButton5
+            // 
+            this.diceButton5.Location = new System.Drawing.Point(386, 25);
+            this.diceButton5.Name = "diceButton5";
+            this.diceButton5.Size = new System.Drawing.Size(75, 75);
+            this.diceButton5.TabIndex = 0;
+            this.diceButton5.Paint += new System.Windows.Forms.PaintEventHandler(this.diceButton5_Paint);
             // 
             // YatzyForm
             // 
@@ -88,6 +136,7 @@ partial class YatzyForm
             this.MaximizeBox = false;
             this.Name = "YatzyForm";
             this.Text = "Yatzy";
+            this.diceResultsWindow.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -95,8 +144,14 @@ partial class YatzyForm
 
     #endregion
 
-    private GroupBox diceWindow;
+    private Panel diceWindow;
     private Button throwDice_btn;
     private Label allowedNumberOfThrows;
-    private GroupBox diceResultsWindow;
+    private Panel diceResultsWindow;
+    private PictureBox diceButton1;
+    private PictureBox diceButton2;
+    private PictureBox diceButton3;
+    private PictureBox diceButton4;
+    private PictureBox diceButton5;
+    
 }
