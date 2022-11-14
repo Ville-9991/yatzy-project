@@ -12,7 +12,19 @@ public partial class YatzyForm : Form
     Dice[] dices = {new Dice(), new Dice(), new Dice(), new Dice(), new Dice()};
     private bool[] dices_thrown = {false, false, false, false, false};
     private bool[] dice_selected = {false, false, false, false, false};
-    private int[] results = {0, 0, 0, 0, 0};
+    private int[] results = {0, 0, 0, 0, 0}; // yksittäisten noppien tulokset
+    private int[] results_to_be_accepted = {0, 0, 0, 0, 0}; // käyttäjän valitsemat nopat/tulokset
+    // private int[] category_score = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // pöytäkirjan piseteet kategorioittain (15 eri kategoriaa)
+    // private int subtotal = 0;
+    // private int grand_total = 0;
+    // private int bonus = 0;
+
+    // mahdolliset kategoriat, joita tavoitella (aluksi kaikki false, mutta mikäli ohjelma löytää noppien tuloksista mahdollisen, kategoria on true)
+    private bool[] possible_combination = {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
+    private bool[] category_selected = {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
+
+    // kategoria lukitaan sen myötä kun käyttäjä valitsee tavoittelemansa kategorian, kunnes koko peli on pelattu loppuun
+    private bool[] category_locked = {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
 
     private void throwDice_btn_Click(object sender, EventArgs e)
     {
@@ -22,8 +34,9 @@ public partial class YatzyForm : Form
             throwDice_btn.Enabled = false;
         }
 
-        for(int dice_number = 0; dice_number < dices.Count(); dice_number++){
-            dices[dice_number].rollDice();
+        for(int index = 0; index < dices.Count(); index++){
+            dices[index].rollDice();
+            results[index] = dices[index].value;
         }
 
         allowedNumberOfThrows.Text = Convert.ToString(throws_left -1);
@@ -33,6 +46,8 @@ public partial class YatzyForm : Form
         diceWindow.Visible = true;
         diceWindow.Invalidate();
 
+        combinationsPanel.Invalidate();
+        
     }
 
     private void enableDiceButtons(){
@@ -207,7 +222,7 @@ public partial class YatzyForm : Form
     private void diceButton1_Click(object sender, EventArgs e){
         if(!dice_selected[0]){
             dice_selected[0] = true; // kun nappia painetaan, annetaan merkki että noppa on valittu
-            results[0] = dices[0].value; // ja tallennetaan nopan arvo tuloksiin
+            results_to_be_accepted[0] = results[0]; // ja tallennetaan nopan arvo tuloksiin
 
             // rajaa painikkeen vaikutusalueen, jotta koko diceResultsWindowta ei uudelleen piirrettä
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[0]);
@@ -215,7 +230,7 @@ public partial class YatzyForm : Form
 
         else{ // mikäli käyttäjä painaa sitä toisen kerran, pyyhitään merkintä ja nollataan results indeksi
             dice_selected[0] = false;
-            results[0] = 0;
+            results_to_be_accepted[0] = 0;
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[0]);
         }
     }
@@ -223,13 +238,13 @@ public partial class YatzyForm : Form
     private void diceButton2_Click(object sender, EventArgs e){
         if(!dice_selected[1]){
             dice_selected[1] = true;
-            results[1] = dices[1].value;
+            results_to_be_accepted[1] = results[1];
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[1]);
         }
 
         else{
             dice_selected[1] = false;
-            results[1] = 0;
+            results_to_be_accepted[1] = 0;
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[1]);
         }
     }
@@ -237,13 +252,13 @@ public partial class YatzyForm : Form
     private void diceButton3_Click(object sender, EventArgs e){
         if(!dice_selected[2]){
             dice_selected[2] = true;
-            results[2] = dices[2].value;
+            results_to_be_accepted[2] = results[2];
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[2]);
         }
 
         else{
             dice_selected[2] = false;
-            results[2] = 0;
+            results_to_be_accepted[2] = 0;
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[2]);
         }
     }
@@ -251,13 +266,13 @@ public partial class YatzyForm : Form
     private void diceButton4_Click(object sender, EventArgs e){
         if(!dice_selected[3]){
             dice_selected[3] = true;
-            results[3] = dices[3].value;
+            results_to_be_accepted[3] = results[3];
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[3]);
         }
 
         else{
             dice_selected[3] = false;
-            results[3] = 0;
+            results_to_be_accepted[3] = 0;
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[3]);
         }
     }
@@ -265,18 +280,19 @@ public partial class YatzyForm : Form
     private void diceButton5_Click(object sender, EventArgs e){
         if(!dice_selected[4]){
             dice_selected[4] = true;
-            results[4] = dices[4].value;
+            results_to_be_accepted[4] = results[4];
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[4]);
         }
 
         else{
             dice_selected[4] = false;
-            results[4] = 0;
+            results_to_be_accepted[4] = 0;
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[4]);
         }
     }
     #endregion
 
+    // diceResultsWindow_Paint => highlightSelected_Paint
     private void highlightSelected_Paint(object sender, PaintEventArgs e)
     {
 
@@ -298,10 +314,110 @@ public partial class YatzyForm : Form
         for(int index = 0; index < dice_selected.Count(); index++){
             if (dice_selected[index]){
                 e.Graphics.DrawRectangle(pen, createDiceButtonBorders()[index]);
-                e.Graphics.DrawImage(new Bitmap(filename: $"img\\Dice{results[index]}.png"), border_list[index]);
+                e.Graphics.DrawImage(new Bitmap(filename: $"img\\Dice{results_to_be_accepted[index]}.png"), border_list[index]);
             }
         }
         
     }
 
+    private void checkPossibleCategoryCombinations(){
+
+        // asetetaan kaikki kategoriat aluksi false, jotta joka tarkastus kerralla käyttäjä saa oikeaa tietoa, 
+        // ettei vahingossa näytetä true, joka olisi ollut vaan edelliseltä kierrokselta
+        for(int index = 0; index < possible_combination.Count(); index++){
+            possible_combination[index] = false;
+        }
+
+        Array.Sort(results);
+
+        // pöytäkirjan yläosa
+        foreach(int num in results){
+            if(num == 1){ // ykköset
+                possible_combination[0] = true;
+            }
+            else if(num == 2){ // kakkoset
+                possible_combination[1] = true;
+            }
+            else if(num == 3){ // kolmoset
+                possible_combination[2] = true;
+            }
+            else if(num == 4){ // neloset
+                possible_combination[3] = true;
+            }
+            else if(num == 5){ // viitoset
+                possible_combination[4] = true;
+            }
+            else if(num == 6){ // kuutoset
+                possible_combination[5] = true;
+            }
+        }
+
+        // pöytäkirjan alaosa
+
+        HashSet<int> dublicates = new HashSet<int>(results);
+
+        int[] small_straight = {1, 2, 3, 4, 5};
+        int[] big_straight = {2, 3, 4, 5, 6};
+
+        if(dublicates.Count() == 4){ // pari
+            possible_combination[6] = true;
+        }
+        // else if(dublicates.Count() == 3){ // kaksi paria
+        //     possible_combination[7] = true;
+        // }
+        // else if(dublicates.Count() == 3){ // kolme samaa
+        //     possible_combination[8] = true;
+        // }
+        else if(dublicates.Count() == 2){ // neljä samaa
+            possible_combination[9] = true;
+        }
+        else if(results == small_straight){ // pieni suora
+            possible_combination[10] = true;
+        }
+        else if(results == big_straight){ // iso suora
+            possible_combination[11] = true;
+        }
+        // else if(){ // täyskäsi
+        //     possible_combination[12] = true;
+        // }
+        else if(results.Any()){ // sattuma
+            possible_combination[13] = true;
+        }
+        else if(dublicates.Count() == 1){ // yatzy
+            possible_combination[14] = true;
+        }
+
+    }
+
+    private void combinationsPanel_Paint(object sender, PaintEventArgs e)
+    {
+        checkPossibleCategoryCombinations();
+
+        var categoires = getAllCategoryLabels();
+
+        for(int index = 0; index < categoires.Count(); index++){
+            if(possible_combination[index]){
+                categoires[index].ForeColor = Color.Green;
+            }
+            else{
+                categoires[index].ForeColor = Color.Black;
+            }
+        }
+    }
+
+    private List<Label> getAllCategoryLabels(){
+        // sama homma kuten dice buttonien kanssa, mutta category/combination labeleita on paljon enemmän
+        // joten on vain parempi tehdä yksi iso lista ja käsitellä niitä indeksittäin
+
+        List<Label> CategoryLabels = new List<Label>();
+
+        foreach (Label label in upperCategories_Panel.Controls){
+            CategoryLabels.Add(label);
+        }
+
+        foreach (Label label in bottomCategories_Panel.Controls){
+            CategoryLabels.Add(label);
+        }
+        return CategoryLabels; // pituus on 15 elementtiä (14 kun aloitetaan 0:sta...)
+    }
 }
