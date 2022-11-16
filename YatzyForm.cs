@@ -304,7 +304,7 @@ public partial class YatzyForm : Form
     }
     #endregion
 
-    // diceResultsWindow_Paint <- -> highlightSelected_Paint
+    // diceResultsWindow_Paint -> highlightSelected_Paint
     private void highlightSelected_Paint(object sender, PaintEventArgs e)
     {
 
@@ -458,6 +458,20 @@ public partial class YatzyForm : Form
             else{
                 categoires[index].ForeColor = Color.Black;
             }
+        }
+
+        Pen pen = new Pen(Color.Blue, 5);
+
+        for(int index = 0; index < category_selected.Count(); index++){
+            if (category_selected[index]){
+                // e.Graphics.DrawRectangle(pen, 10, 10, 1000, 1000);
+
+                categoires[index].ForeColor = Color.Blue;
+            }
+            else{
+                categoires[index].ForeColor = Color.Black;
+            }
+            
         }
     }
 
