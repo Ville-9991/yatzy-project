@@ -12,9 +12,9 @@ public partial class YatzyForm : Form
     Dice[] dices = {new Dice(), new Dice(), new Dice(), new Dice(), new Dice()};
     private bool[] dices_thrown = {false, false, false, false, false};
     private bool[] dice_selected = {false, false, false, false, false};
-    private int[] results = {0, 0, 0, 0, 0}; // yksittäisten noppien tulokset
-    private int[] results_to_be_accepted = {0, 0, 0, 0, 0}; // käyttäjän valitsemat nopat/tulokset
-    // private int[] category_score = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // pöytäkirjan piseteet kategorioittain (15 eri kategoriaa)
+    private int[] results = new int[5]; // yksittäisten noppien tulokset
+    private int[] results_to_be_accepted = new int[5]; // käyttäjän valitsemat nopat/tulokset
+    // private int[] category_score = new int[15]; // pöytäkirjan piseteet kategorioittain
     // private int subtotal = 0;
     // private int grand_total = 0;
     // private int bonus = 0;
@@ -110,8 +110,10 @@ public partial class YatzyForm : Form
         Random rng = new Random(); // siajinnit on satunnaisia, jotta voidaan simuloida 2d noppien "autenttisuus"
 
         for(int index = 0; index < dices.Count(); index++){
-            // suorakulmioiden mittojen määrittäminen/sijaintin arvonta
+            // suorakulmioiden mittojen määrittäminen/sijainnin arvonta
 
+            // TODO ikkunan pienennettyä, ohjelma lataa funktion uudellen, eli arpoo noppien sijainnit joka kerta eri paikkaan kun ikkuna suljetaan tai avataan
+            // koita keksiä keino miten tältä voisi välttyä että kuvat pysyisivät "paikallaan"
             pointX = rng.Next(0, diceWindow.Size.Width-(img_width*2));
             pointY = rng.Next(0, diceWindow.Size.Height-(img_height*2));
 
@@ -226,12 +228,14 @@ public partial class YatzyForm : Form
 
             // rajaa painikkeen vaikutusalueen, jotta koko diceResultsWindowta ei uudelleen piirrettä
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[0]);
+            combinationsPanel.Invalidate();
         }
 
         else{ // mikäli käyttäjä painaa sitä toisen kerran, pyyhitään merkintä ja nollataan results indeksi
             dice_selected[0] = false;
             results_to_be_accepted[0] = 0;
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[0]);
+            combinationsPanel.Invalidate();
         }
     }
 
@@ -240,12 +244,14 @@ public partial class YatzyForm : Form
             dice_selected[1] = true;
             results_to_be_accepted[1] = results[1];
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[1]);
+            combinationsPanel.Invalidate();
         }
 
         else{
             dice_selected[1] = false;
             results_to_be_accepted[1] = 0;
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[1]);
+            combinationsPanel.Invalidate();
         }
     }
 
@@ -254,12 +260,14 @@ public partial class YatzyForm : Form
             dice_selected[2] = true;
             results_to_be_accepted[2] = results[2];
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[2]);
+            combinationsPanel.Invalidate();
         }
 
         else{
             dice_selected[2] = false;
             results_to_be_accepted[2] = 0;
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[2]);
+            combinationsPanel.Invalidate();
         }
     }
 
@@ -268,12 +276,14 @@ public partial class YatzyForm : Form
             dice_selected[3] = true;
             results_to_be_accepted[3] = results[3];
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[3]);
+            combinationsPanel.Invalidate();
         }
 
         else{
             dice_selected[3] = false;
             results_to_be_accepted[3] = 0;
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[3]);
+            combinationsPanel.Invalidate();
         }
     }
 
@@ -282,17 +292,19 @@ public partial class YatzyForm : Form
             dice_selected[4] = true;
             results_to_be_accepted[4] = results[4];
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[4]);
+            combinationsPanel.Invalidate();
         }
 
         else{
             dice_selected[4] = false;
             results_to_be_accepted[4] = 0;
             this.diceResultsWindow.Invalidate(createDiceButtonBorders()[4]);
+            combinationsPanel.Invalidate();
         }
     }
     #endregion
 
-    // diceResultsWindow_Paint => highlightSelected_Paint
+    // diceResultsWindow_Paint <- -> highlightSelected_Paint
     private void highlightSelected_Paint(object sender, PaintEventArgs e)
     {
 
@@ -314,13 +326,18 @@ public partial class YatzyForm : Form
         for(int index = 0; index < dice_selected.Count(); index++){
             if (dice_selected[index]){
                 e.Graphics.DrawRectangle(pen, createDiceButtonBorders()[index]);
-                e.Graphics.DrawImage(new Bitmap(filename: $"img\\Dice{results_to_be_accepted[index]}.png"), border_list[index]);
+                try{
+                    e.Graphics.DrawImage(new Bitmap(filename: $"img\\Dice{results_to_be_accepted[index]}.png"), border_list[index]);
+                }
+                catch{
+                    System.Console.WriteLine("Kuva tiedostoa viittaava indeksi ei latautunut...");
+                }
             }
         }
         
     }
 
-    private void checkPossibleCategoryCombinations(){
+    private void checkPossibleCategoryCombinations(List<int> current_results){ // current_results pituus on aina 5
 
         // asetetaan kaikki kategoriat aluksi false, jotta joka tarkastus kerralla käyttäjä saa oikeaa tietoa, 
         // ettei vahingossa näytetä true, joka olisi ollut vaan edelliseltä kierrokselta
@@ -328,10 +345,14 @@ public partial class YatzyForm : Form
             possible_combination[index] = false;
         }
 
-        Array.Sort(results);
+        if(current_results[0] == 0){
+            // koska results alustetaan aina viitenä 0:na, joka on 5 samaa eli "yatzy"
+            // estetään käyttäjältä mahdollisuus hyväksikäyttää tätä puutetta...
+            return;
+        }
 
         // pöytäkirjan yläosa
-        foreach(int num in results){
+        foreach(int num in current_results){
             if(num == 1){ // ykköset
                 possible_combination[0] = true;
             }
@@ -354,7 +375,8 @@ public partial class YatzyForm : Form
 
         // pöytäkirjan alaosa
 
-        HashSet<int> dublicates = new HashSet<int>(results);
+        current_results.Sort();
+        HashSet<int> dublicates = new HashSet<int>(current_results);
 
         int[] small_straight = {1, 2, 3, 4, 5};
         int[] big_straight = {2, 3, 4, 5, 6};
@@ -362,36 +384,70 @@ public partial class YatzyForm : Form
         if(dublicates.Count() == 4){ // pari
             possible_combination[6] = true;
         }
-        // else if(dublicates.Count() == 3){ // kaksi paria
-        //     possible_combination[7] = true;
-        // }
-        // else if(dublicates.Count() == 3){ // kolme samaa
-        //     possible_combination[8] = true;
-        // }
-        else if(dublicates.Count() == 2){ // neljä samaa
-            possible_combination[9] = true;
+        else if(dublicates.Count() == 3){ // kaksi paria
+            possible_combination[7] = true;
         }
-        else if(results == small_straight){ // pieni suora
+        else if(current_results.SequenceEqual(small_straight)){ // pieni suora
             possible_combination[10] = true;
         }
-        else if(results == big_straight){ // iso suora
+        else if(current_results.SequenceEqual(big_straight)){ // iso suora
             possible_combination[11] = true;
-        }
-        // else if(){ // täyskäsi
-        //     possible_combination[12] = true;
-        // }
-        else if(results.Any()){ // sattuma
-            possible_combination[13] = true;
         }
         else if(dublicates.Count() == 1){ // yatzy
             possible_combination[14] = true;
         }
 
+        // käydään vielä läpi "kaksi paria", "kolme samaa", "neljä samaa" ja "täyskäsi" kategoriat
+
+        int[] occurrence_count = new int[5];
+        // käy "current_results" 0-4 kertaa läpi ja laskee numeroiden eseiintymis määrän
+        for (int count = 0; count < current_results.Count(); count++){
+            for (int index = 0; index < current_results.Count(); index++){
+                if (current_results[index] == count){
+                    occurrence_count[count]++;
+                }
+            }
+        }
+
+        for(int index = 0; index < current_results.Count(); index++){
+            if(occurrence_count[index] == 3 && dublicates.Count() != 2){ // kolme samaa
+                possible_combination[8] = true;
+            }
+            else if(occurrence_count[index] == 4){ // neljä samaa
+                possible_combination[9] = true;
+            }
+            else if(occurrence_count[index] == 3 && dublicates.Count() == 2){ // täyskäsi
+                possible_combination[12] = true;
+            }
+        }
+
+        // mennään vasta viimeisenä tänne
+        if(current_results.Any()){ // sattuma
+            possible_combination[13] = true;
+        }
+
+    }
+
+    // luo listan sen mukaan mitä nopan tuloksia verrataan kategorioittan
+    // jos käyttäjä on valinnut nopan käytetään valittujen noppien arvoja, muuten käytetään alku arvoja
+    private List<int> resultsToBeComparedWith(bool[] selected_dices, int[] initial_results, int[] user_results){
+        List<int> results_for_comparison = new List<int>();
+
+        for(int index = 0; index < selected_dices.Count(); index++){
+            if(selected_dices[index]){
+                results_for_comparison.Add(user_results[index]);
+            }
+            else{
+                results_for_comparison.Add(initial_results[index]);
+            }
+        }
+        return results_for_comparison;
     }
 
     private void combinationsPanel_Paint(object sender, PaintEventArgs e)
     {
-        checkPossibleCategoryCombinations();
+
+        checkPossibleCategoryCombinations(resultsToBeComparedWith(dice_selected, results, results_to_be_accepted));
 
         var categoires = getAllCategoryLabels();
 
