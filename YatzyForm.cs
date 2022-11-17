@@ -14,7 +14,7 @@ public partial class YatzyForm : Form
     private bool[] dice_selected = {false, false, false, false, false};
     private int[] results = new int[5]; // yksittäisten noppien tulokset
     private int[] results_to_be_accepted = new int[5]; // käyttäjän valitsemat nopat/tulokset
-    // private int[] category_score = new int[15]; // pöytäkirjan piseteet kategorioittain
+    private int[] category_score = new int[15]; // pöytäkirjan piseteet kategorioittain
     // private int subtotal = 0;
     // private int grand_total = 0;
     // private int bonus = 0;
@@ -42,6 +42,7 @@ public partial class YatzyForm : Form
         allowedNumberOfThrows.Text = Convert.ToString(throws_left -1);
 
         enableDiceButtons();
+        lockAllCategories();
 
         diceWindow.Visible = true;
         diceWindow.Invalidate();
@@ -56,7 +57,7 @@ public partial class YatzyForm : Form
             dices_thrown[i] = true;
         }
 
-        var dice_button_list = getAllPictureBoxes();
+        var dice_button_list = getAllDiceButtons();
 
         int index = 0;
         foreach(PictureBox dice_button in dice_button_list){
@@ -78,7 +79,24 @@ public partial class YatzyForm : Form
         }
     }
 
-    private List<PictureBox> getAllPictureBoxes(){
+    private void lockAllCategories(){
+        bool any_selected = false;
+
+        for(int index = 0; index < category_selected.Count(); index++){
+            if(category_selected[index]){
+                any_selected = true;
+            }
+        }
+
+        if(any_selected){
+            for(int index = 0; index < category_locked.Count(); index++){
+                category_locked[index] = true;
+            }
+        }
+
+    }
+
+    private List<PictureBox> getAllDiceButtons(){
         // dice buttoneita on monta, joten niistä on hyvä tehdä lista
         // helpompaa käsittelyä varten
         List<PictureBox> pictureBoxes = new List<PictureBox>();
@@ -197,7 +215,7 @@ public partial class YatzyForm : Form
 
     // funktio joka luo ääriviivat noppa painikkeille
     private List<Rectangle> createDiceButtonBorders(){
-        var diceButton_list = getAllPictureBoxes();
+        var diceButton_list = getAllDiceButtons();
         Rectangle border = new Rectangle();
         List<Rectangle> border_list = new List<Rectangle>();
 
@@ -308,7 +326,7 @@ public partial class YatzyForm : Form
     private void highlightSelected_Paint(object sender, PaintEventArgs e)
     {
 
-        var diceButton_list = getAllPictureBoxes();
+        var diceButton_list = getAllDiceButtons();
         Rectangle border = new Rectangle();
         List<Rectangle> border_list = new List<Rectangle>();
 
@@ -451,28 +469,34 @@ public partial class YatzyForm : Form
 
         var categoires = getAllCategoryLabels();
 
+        bool any_selected = false;
+        for(int index = 0; index < category_selected.Count(); index++){
+            if(category_selected[index]){
+                any_selected = true;
+            }
+        }
+
         for(int index = 0; index < categoires.Count(); index++){
-            if(possible_combination[index]){
+            if(possible_combination[index] && !category_selected[index] && !category_locked[index] && !any_selected){
                 categoires[index].ForeColor = Color.Green;
             }
-            else{
+            else if(!possible_combination[index] && !category_locked[index]){
                 categoires[index].ForeColor = Color.Black;
             }
         }
 
-        Pen pen = new Pen(Color.Blue, 5);
+        // Pen pen = new Pen(Color.Blue, 5);
 
         for(int index = 0; index < category_selected.Count(); index++){
-            if (category_selected[index]){
+            if (category_selected[index] && !category_locked[index]){
                 // e.Graphics.DrawRectangle(pen, 10, 10, 1000, 1000);
 
                 categoires[index].ForeColor = Color.Blue;
             }
-            else{
-                categoires[index].ForeColor = Color.Black;
-            }
             
         }
+
+        enableAcceptBtn();
     }
 
     private List<Label> getAllCategoryLabels(){
@@ -489,5 +513,165 @@ public partial class YatzyForm : Form
             CategoryLabels.Add(label);
         }
         return CategoryLabels; // pituus on 15 elementtiä (14 kun aloitetaan 0:sta...)
+    }
+
+    private void enableAcceptBtn(){
+        if(category_selected.Contains(true)){
+            acceptResults_btn.Enabled = true;
+        }
+    }
+
+    private void acceptResults_btn_Click(object sender, EventArgs e)
+    {
+
+        var categoires = getAllCategoryLabels();
+
+        for(int index = 0; index < category_locked.Count(); index++){
+            category_locked[index] = false;
+        }
+
+        for(int index = 0; index < category_selected.Count(); index++){
+            if(category_selected[index]){
+                category_locked[index] = true; // ainoastaan edellisellä kierroksella valittu kategoria lukitaan
+                categoires[index].ForeColor = Color.LightGray;
+            }
+            if(!category_locked[index]){
+                category_selected[index] = false;
+            }
+        }
+
+        applyScore();
+
+        allowedNumberOfThrows.Text = Convert.ToString(3);
+
+        for(int index = 0; index < dice_selected.Count(); index++){
+            dice_selected[index] = false;
+            dices_thrown[index] = false;
+            dices[index].value = 0;
+            results[index] = 0;
+            results_to_be_accepted[index] = 0;
+        }
+
+        var dice_button_list = getAllDiceButtons();
+
+        for(int index = 0; index < dice_button_list.Count(); index++){
+            dice_button_list[index].Enabled = false;
+            dice_button_list[index].Invalidate();
+        }
+
+        diceWindow.Visible = false;
+        diceResultsWindow.Invalidate();
+        throwDice_btn.Enabled = true;
+        acceptResults_btn.Enabled = false;
+    }
+
+    private void applyScore(){
+
+        // results_to_be_accepted
+        // category_score
+        // category_locked
+        var labels = getAllResultsLabels();
+
+        for(int index = 0; index < category_locked.Count(); index++){
+            if(category_locked[index] && category_score[index] == 0){
+                category_score[index] = checkScoring(index);
+                labels[index].Text = Convert.ToString(category_score[index]);
+            }
+        }
+
+        int checkScoring(int categoryID){
+            int score = 0;
+
+            int[] numbers = results_to_be_accepted.Append(0).ToArray();
+            int[] occurrence_count = new int[numbers.Count()];
+            // käy "current_results" 0-5 kertaa läpi ja laskee numeroiden eseiintymis määrän
+            for (int count = 0; count < numbers.Length; count++){
+                for (int index = 0; index < numbers.Length; index++){
+                    if (numbers[index] == count){
+                        occurrence_count[count]++;
+                    }
+                }
+            }
+
+            List<(int, int)> occurance_times = new List<(int, int)>();
+
+            for (int x = 0; x < numbers.Length; x++){
+            occurance_times.Add((x, occurrence_count[x]));
+            }
+
+            var occurance_times_ordered = occurance_times.OrderByDescending(a => a.Item2).ToList();
+
+            // pöytäkirjan yläosa
+
+            if(categoryID == 0 && possible_combination[0]){
+                score = results_to_be_accepted.Where((a, b) => a == 1).Sum();
+            }
+            else if(categoryID == 1 && possible_combination[1]){
+                score = results_to_be_accepted.Where((a, b) => a == 2).Sum();
+            }
+            else if(categoryID == 2 && possible_combination[2]){
+                score = results_to_be_accepted.Where((a, b) => a == 3).Sum();
+            }
+            else if(categoryID == 3 && possible_combination[3]){
+                score = results_to_be_accepted.Where((a, b) => a == 4).Sum();
+            }
+            else if(categoryID == 4 && possible_combination[4]){
+                score = results_to_be_accepted.Where((a, b) => a == 5).Sum();
+            }
+            else if(categoryID == 5 && possible_combination[5]){
+                score = results_to_be_accepted.Where((a, b) => a == 6).Sum();
+            }
+
+            // pöytäkirjan alaosa
+
+            else if(categoryID == 6 && possible_combination[6] && occurance_times_ordered[1].Item2 == 2){ // pari
+                score = occurance_times_ordered[1].Item1 *2;
+            }
+            else if(categoryID == 7 && possible_combination[7] && (occurance_times_ordered[1].Item2 == 2 && occurance_times_ordered[2].Item2 == 2)){ // kaksi paria
+                score = (occurance_times_ordered[1].Item1 *2) + (occurance_times_ordered[2].Item1 *2);
+            }
+            else if(categoryID == 8 && possible_combination[8] && occurance_times_ordered[1].Item2 == 3){ // kolme samaa
+                score = score = occurance_times_ordered[1].Item1 *3;
+            }
+            else if(categoryID == 9 && possible_combination[9] && occurance_times_ordered[1].Item2 == 4){ // neljä samaa
+                score = score = occurance_times_ordered[1].Item1 *4;
+            }
+            else if(categoryID == 10 && possible_combination[10]){ // pieni suora
+                score = 15;
+            }
+            else if(categoryID == 11 && possible_combination[11]){ // iso suora
+                score = 20;
+            }
+            else if(categoryID == 12 && possible_combination[12] && (occurance_times_ordered[1].Item2 == 3 && occurance_times_ordered[2].Item2 == 2)){ // täyskäsi
+                score = (occurance_times_ordered[1].Item1 *3) + (occurance_times_ordered[2].Item1 *2);
+            }
+            else if(categoryID == 13 && possible_combination[13]){ // sattuma
+                score = results_to_be_accepted.Sum();
+            }
+            else if(categoryID == 14 && possible_combination[14]){ // yazty
+                score = 50;
+            }
+
+            return score;
+        }
+
+    }
+
+    private List<Label> getAllResultsLabels(){
+        List<Label> resultLabels = new List<Label>();
+
+        foreach(Label label in upperResultsContainer.Controls){
+            resultLabels.Add(label);
+        }
+
+        foreach(Label label in bottomResultsContainer.Controls){
+            resultLabels.Add(label);
+        }
+
+        resultLabels.Remove(valisumma_resultsLabel);
+        resultLabels.Remove(bonus_resultsLabel);
+        resultLabels.Remove(summa_resultsLabel);
+
+        return resultLabels;
     }
 }
