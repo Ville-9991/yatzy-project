@@ -10,8 +10,8 @@ public partial class YatzyForm : Form
     // alustetaan (listaksi) viisi noppaa, joilla on kuusi sivua, 
     // jotta niiden metodeja/arvoja voidaan käyttää myöhemmin
     Dice[] dices = {new Dice(), new Dice(), new Dice(), new Dice(), new Dice()};
-    private bool[] dices_thrown = {false, false, false, false, false};
-    private bool[] dice_selected = {false, false, false, false, false};
+    private bool[] dices_thrown = new bool[5];
+    private bool[] dice_selected = new bool[5];
     private int[] results = new int[5]; // yksittäisten noppien tulokset
     private int[] results_to_be_accepted = new int[5]; // käyttäjän valitsemat nopat/tulokset
     private int[] category_score = new int[15]; // pöytäkirjan piseteet kategorioittain
@@ -20,11 +20,14 @@ public partial class YatzyForm : Form
     // private int bonus = 0;
 
     // mahdolliset kategoriat, joita tavoitella (aluksi kaikki false, mutta mikäli ohjelma löytää noppien tuloksista mahdollisen, kategoria on true)
-    private bool[] possible_combination = {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
-    private bool[] category_selected = {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
+    private bool[] possible_combination = new bool[15];
+    private bool[] category_selected = new bool[15];
 
-    // kategoria lukitaan sen myötä kun käyttäjä valitsee tavoittelemansa kategorian, kunnes koko peli on pelattu loppuun
-    private bool[] category_locked = {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
+    // kategoria lukitaan sen myötä kun käyttäjä valitsee tavoittelemansa kategorian
+    private bool[] category_locked = new bool[15];
+    // TODO tee array "category_complete", joka osoittaa onko kategoria käyty läpi ja määrittää sen lukituksen.
+    // Lukitus pysyy niin kauna kunnes koko peli on pelattu loppuun
+    private bool[] category_completed = new bool[15];
 
     private void throwDice_btn_Click(object sender, EventArgs e)
     {
@@ -355,113 +358,6 @@ public partial class YatzyForm : Form
         
     }
 
-    private void checkPossibleCategoryCombinations(List<int> current_results){ // current_results pituus on aina 5
-
-        // asetetaan kaikki kategoriat aluksi false, jotta joka tarkastus kerralla käyttäjä saa oikeaa tietoa, 
-        // ettei vahingossa näytetä true, joka olisi ollut vaan edelliseltä kierrokselta
-        for(int index = 0; index < possible_combination.Count(); index++){
-            possible_combination[index] = false;
-        }
-
-        if(current_results[0] == 0){
-            // koska results alustetaan aina viitenä 0:na, joka on 5 samaa eli "yatzy"
-            // estetään käyttäjältä mahdollisuus hyväksikäyttää tätä puutetta...
-            return;
-        }
-
-        // pöytäkirjan yläosa
-        foreach(int num in current_results){
-            if(num == 1){ // ykköset
-                possible_combination[0] = true;
-            }
-            else if(num == 2){ // kakkoset
-                possible_combination[1] = true;
-            }
-            else if(num == 3){ // kolmoset
-                possible_combination[2] = true;
-            }
-            else if(num == 4){ // neloset
-                possible_combination[3] = true;
-            }
-            else if(num == 5){ // viitoset
-                possible_combination[4] = true;
-            }
-            else if(num == 6){ // kuutoset
-                possible_combination[5] = true;
-            }
-        }
-
-        // pöytäkirjan alaosa
-
-        current_results.Sort();
-        HashSet<int> dublicates = new HashSet<int>(current_results);
-
-        int[] small_straight = {1, 2, 3, 4, 5};
-        int[] big_straight = {2, 3, 4, 5, 6};
-
-        if(dublicates.Count() == 4){ // pari
-            possible_combination[6] = true;
-        }
-        else if(dublicates.Count() == 3){ // kaksi paria
-            possible_combination[7] = true;
-        }
-        else if(current_results.SequenceEqual(small_straight)){ // pieni suora
-            possible_combination[10] = true;
-        }
-        else if(current_results.SequenceEqual(big_straight)){ // iso suora
-            possible_combination[11] = true;
-        }
-        else if(dublicates.Count() == 1){ // yatzy
-            possible_combination[14] = true;
-        }
-
-        // käydään vielä läpi "kaksi paria", "kolme samaa", "neljä samaa" ja "täyskäsi" kategoriat
-
-        int[] occurrence_count = new int[5];
-        // käy "current_results" 0-4 kertaa läpi ja laskee numeroiden eseiintymis määrän
-        for (int count = 0; count < current_results.Count(); count++){
-            for (int index = 0; index < current_results.Count(); index++){
-                if (current_results[index] == count){
-                    occurrence_count[count]++;
-                }
-            }
-        }
-
-        for(int index = 0; index < current_results.Count(); index++){
-            if(occurrence_count[index] == 3 && dublicates.Count() != 2){ // kolme samaa
-                possible_combination[8] = true;
-            }
-            else if(occurrence_count[index] == 4){ // neljä samaa
-                possible_combination[9] = true;
-            }
-            else if(occurrence_count[index] == 3 && dublicates.Count() == 2){ // täyskäsi
-                possible_combination[12] = true;
-            }
-        }
-
-        // mennään vasta viimeisenä tänne
-        if(current_results.Any()){ // sattuma
-            possible_combination[13] = true;
-        }
-
-    }
-
-    // luo listan sen mukaan mitä nopan tuloksia verrataan kategorioittan
-    // jos käyttäjä on valinnut nopan käytetään valittujen noppien arvoja, muuten käytetään alku arvoja
-    private List<int> resultsToBeComparedWith(bool[] selected_dices, int[] initial_results, int[] user_results){
-        List<int> results_for_comparison = new List<int>();
-
-        for(int index = 0; index < selected_dices.Count(); index++){
-            if(selected_dices[index]){
-                results_for_comparison.Add(user_results[index]);
-            }
-            else{
-                results_for_comparison.Add(initial_results[index]);
-            }
-        }
-        return results_for_comparison;
-    }
-
     private void combinationsPanel_Paint(object sender, PaintEventArgs e)
     {
 
@@ -527,21 +423,49 @@ public partial class YatzyForm : Form
         var categoires = getAllCategoryLabels();
 
         for(int index = 0; index < category_locked.Count(); index++){
-            category_locked[index] = false;
+            if(!category_completed[index]){
+                category_locked[index] = false;
+            }
         }
 
         for(int index = 0; index < category_selected.Count(); index++){
             if(category_selected[index]){
-                category_locked[index] = true; // ainoastaan edellisellä kierroksella valittu kategoria lukitaan
-                categoires[index].ForeColor = Color.LightGray;
-            }
-            if(!category_locked[index]){
                 category_selected[index] = false;
+
+                category_locked[index] = true; // ainoastaan edellisellä kierroksella valittu kategoria lukitaan
+                category_completed[index] = true;
+            }
+            
+            if(category_completed[index]){
+                categoires[index].ForeColor = Color.LightGray;
             }
         }
 
         applyScore();
 
+        softReset();
+
+    }
+
+    private List<Label> getAllResultsLabels(){
+        List<Label> resultLabels = new List<Label>();
+
+        foreach(Label label in upperResultsContainer.Controls){
+            resultLabels.Add(label);
+        }
+
+        foreach(Label label in bottomResultsContainer.Controls){
+            resultLabels.Add(label);
+        }
+
+        resultLabels.Remove(valisumma_resultsLabel);
+        resultLabels.Remove(bonus_resultsLabel);
+        resultLabels.Remove(summa_resultsLabel);
+
+        return resultLabels;
+    }
+
+    private void softReset(){
         allowedNumberOfThrows.Text = Convert.ToString(3);
 
         for(int index = 0; index < dice_selected.Count(); index++){
@@ -563,115 +487,5 @@ public partial class YatzyForm : Form
         diceResultsWindow.Invalidate();
         throwDice_btn.Enabled = true;
         acceptResults_btn.Enabled = false;
-    }
-
-    private void applyScore(){
-
-        // results_to_be_accepted
-        // category_score
-        // category_locked
-        var labels = getAllResultsLabels();
-
-        for(int index = 0; index < category_locked.Count(); index++){
-            if(category_locked[index] && category_score[index] == 0){
-                category_score[index] = checkScoring(index);
-                labels[index].Text = Convert.ToString(category_score[index]);
-            }
-        }
-
-        int checkScoring(int categoryID){
-            int score = 0;
-
-            int[] numbers = results_to_be_accepted.Append(0).ToArray();
-            int[] occurrence_count = new int[numbers.Count()];
-            // käy "current_results" 0-5 kertaa läpi ja laskee numeroiden eseiintymis määrän
-            for (int count = 0; count < numbers.Length; count++){
-                for (int index = 0; index < numbers.Length; index++){
-                    if (numbers[index] == count){
-                        occurrence_count[count]++;
-                    }
-                }
-            }
-
-            List<(int, int)> occurance_times = new List<(int, int)>();
-
-            for (int x = 0; x < numbers.Length; x++){
-            occurance_times.Add((x, occurrence_count[x]));
-            }
-
-            var occurance_times_ordered = occurance_times.OrderByDescending(a => a.Item2).ToList();
-
-            // pöytäkirjan yläosa
-
-            if(categoryID == 0 && possible_combination[0]){
-                score = results_to_be_accepted.Where((a, b) => a == 1).Sum();
-            }
-            else if(categoryID == 1 && possible_combination[1]){
-                score = results_to_be_accepted.Where((a, b) => a == 2).Sum();
-            }
-            else if(categoryID == 2 && possible_combination[2]){
-                score = results_to_be_accepted.Where((a, b) => a == 3).Sum();
-            }
-            else if(categoryID == 3 && possible_combination[3]){
-                score = results_to_be_accepted.Where((a, b) => a == 4).Sum();
-            }
-            else if(categoryID == 4 && possible_combination[4]){
-                score = results_to_be_accepted.Where((a, b) => a == 5).Sum();
-            }
-            else if(categoryID == 5 && possible_combination[5]){
-                score = results_to_be_accepted.Where((a, b) => a == 6).Sum();
-            }
-
-            // pöytäkirjan alaosa
-
-            else if(categoryID == 6 && possible_combination[6] && occurance_times_ordered[1].Item2 == 2){ // pari
-                score = occurance_times_ordered[1].Item1 *2;
-            }
-            else if(categoryID == 7 && possible_combination[7] && (occurance_times_ordered[1].Item2 == 2 && occurance_times_ordered[2].Item2 == 2)){ // kaksi paria
-                score = (occurance_times_ordered[1].Item1 *2) + (occurance_times_ordered[2].Item1 *2);
-            }
-            else if(categoryID == 8 && possible_combination[8] && occurance_times_ordered[1].Item2 == 3){ // kolme samaa
-                score = score = occurance_times_ordered[1].Item1 *3;
-            }
-            else if(categoryID == 9 && possible_combination[9] && occurance_times_ordered[1].Item2 == 4){ // neljä samaa
-                score = score = occurance_times_ordered[1].Item1 *4;
-            }
-            else if(categoryID == 10 && possible_combination[10]){ // pieni suora
-                score = 15;
-            }
-            else if(categoryID == 11 && possible_combination[11]){ // iso suora
-                score = 20;
-            }
-            else if(categoryID == 12 && possible_combination[12] && (occurance_times_ordered[1].Item2 == 3 && occurance_times_ordered[2].Item2 == 2)){ // täyskäsi
-                score = (occurance_times_ordered[1].Item1 *3) + (occurance_times_ordered[2].Item1 *2);
-            }
-            else if(categoryID == 13 && possible_combination[13]){ // sattuma
-                score = results_to_be_accepted.Sum();
-            }
-            else if(categoryID == 14 && possible_combination[14]){ // yazty
-                score = 50;
-            }
-
-            return score;
-        }
-
-    }
-
-    private List<Label> getAllResultsLabels(){
-        List<Label> resultLabels = new List<Label>();
-
-        foreach(Label label in upperResultsContainer.Controls){
-            resultLabels.Add(label);
-        }
-
-        foreach(Label label in bottomResultsContainer.Controls){
-            resultLabels.Add(label);
-        }
-
-        resultLabels.Remove(valisumma_resultsLabel);
-        resultLabels.Remove(bonus_resultsLabel);
-        resultLabels.Remove(summa_resultsLabel);
-
-        return resultLabels;
     }
 }
