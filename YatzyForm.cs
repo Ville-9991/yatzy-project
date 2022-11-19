@@ -361,7 +361,7 @@ public partial class YatzyForm : Form
     private void combinationsPanel_Paint(object sender, PaintEventArgs e)
     {
 
-        checkPossibleCategoryCombinations(resultsToBeComparedWith(dice_selected, results, results_to_be_accepted));
+        checkIfPossibleForScoring(resultsForScoring(dice_selected, results, results_to_be_accepted));
 
         var categoires = getAllCategoryLabels();
 
@@ -381,12 +381,8 @@ public partial class YatzyForm : Form
             }
         }
 
-        // Pen pen = new Pen(Color.Blue, 5);
-
         for(int index = 0; index < category_selected.Count(); index++){
             if (category_selected[index] && !category_locked[index]){
-                // e.Graphics.DrawRectangle(pen, 10, 10, 1000, 1000);
-
                 categoires[index].ForeColor = Color.Blue;
             }
             
@@ -412,8 +408,12 @@ public partial class YatzyForm : Form
     }
 
     private void enableAcceptBtn(){
+
         if(category_selected.Contains(true)){
             acceptResults_btn.Enabled = true;
+        }
+        else{
+            acceptResults_btn.Enabled = false;
         }
     }
 
@@ -430,7 +430,6 @@ public partial class YatzyForm : Form
 
         for(int index = 0; index < category_selected.Count(); index++){
             if(category_selected[index]){
-                category_selected[index] = false;
 
                 category_locked[index] = true; // ainoastaan edellisellä kierroksella valittu kategoria lukitaan
                 category_completed[index] = true;
@@ -442,7 +441,6 @@ public partial class YatzyForm : Form
         }
 
         applyScore();
-
         softReset();
 
     }
@@ -466,6 +464,9 @@ public partial class YatzyForm : Form
     }
 
     private void softReset(){
+
+        deselectAllCategories();
+
         allowedNumberOfThrows.Text = Convert.ToString(3);
 
         for(int index = 0; index < dice_selected.Count(); index++){
@@ -481,6 +482,10 @@ public partial class YatzyForm : Form
         for(int index = 0; index < dice_button_list.Count(); index++){
             dice_button_list[index].Enabled = false;
             dice_button_list[index].Invalidate();
+        }
+
+        for(int index = 0; index < possible_combination.Count(); index++){
+            possible_combination[index] = false;
         }
 
         diceWindow.Visible = false;
