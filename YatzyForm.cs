@@ -15,9 +15,6 @@ public partial class YatzyForm : Form
     private int[] results = new int[5]; // yksittäisten noppien tulokset
     private int[] results_to_be_accepted = new int[5]; // käyttäjän valitsemat nopat/tulokset
     private int[] category_score = new int[15]; // pöytäkirjan piseteet kategorioittain
-    // private int subtotal = 0;
-    // private int grand_total = 0;
-    // private int bonus = 0;
 
     // mahdolliset kategoriat, joita tavoitella (aluksi kaikki false, mutta mikäli ohjelma löytää noppien tuloksista mahdollisen, kategoria on true)
     private bool[] possible_combination = new bool[15];
@@ -443,6 +440,10 @@ public partial class YatzyForm : Form
         applyScore();
         softReset();
 
+        if(category_completed.All(x => x == true)){
+            finishTheSession();
+        }
+
     }
 
     private List<Label> getAllResultsLabels(){
@@ -492,5 +493,38 @@ public partial class YatzyForm : Form
         diceResultsWindow.Invalidate();
         throwDice_btn.Enabled = true;
         acceptResults_btn.Enabled = false;
+    }
+
+    private void finishTheSession(){
+
+        string message = $"Pisteitesi tulos: {summa_resultsLabel.Text} \n\nHaluatko pelata uudelleen?";
+        const string title = "Game Over";
+
+        const MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+        DialogResult result = MessageBox.Show(message, title, buttons);
+        if (result == DialogResult.Yes) {
+
+        var labels = getAllResultsLabels();
+        var categoires = getAllCategoryLabels();
+
+        for(int index = 0; index < category_completed.Count(); index++){
+            category_locked[index] = false;
+            category_completed[index] = false;
+            category_score[index] = 0;
+
+            labels[index].Text = Convert.ToString(0);
+            categoires[index].ForeColor = Color.Black;
+        }
+
+        valisumma_resultsLabel.Text = Convert.ToString(0);
+        bonus_resultsLabel.Text = Convert.ToString(0);
+        summa_resultsLabel.Text = Convert.ToString(0);
+
+        }
+
+        else{
+            Application.Exit();
+        }
     }
 }

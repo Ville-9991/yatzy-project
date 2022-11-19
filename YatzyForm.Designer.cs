@@ -39,6 +39,15 @@ partial class YatzyForm
             this.diceButton5 = new System.Windows.Forms.PictureBox();
             this.acceptResults_btn = new System.Windows.Forms.Button();
             this.upperRecordContainer_Panel = new System.Windows.Forms.Panel();
+            this.upperResultsContainer = new System.Windows.Forms.Panel();
+            this.ykkoset_resultsLabel = new System.Windows.Forms.Label();
+            this.kakkoset_resultsLabel = new System.Windows.Forms.Label();
+            this.kolmoset_resultsLabel = new System.Windows.Forms.Label();
+            this.neloset_resultsLabel = new System.Windows.Forms.Label();
+            this.viitoset_resultsLabel = new System.Windows.Forms.Label();
+            this.kuutoset_resultsLabel = new System.Windows.Forms.Label();
+            this.valisumma_resultsLabel = new System.Windows.Forms.Label();
+            this.bonus_resultsLabel = new System.Windows.Forms.Label();
             this.upperCategories_Panel = new System.Windows.Forms.Panel();
             this.ykkosetLabel = new System.Windows.Forms.Label();
             this.kakkosetLabel = new System.Windows.Forms.Label();
@@ -46,17 +55,20 @@ partial class YatzyForm
             this.nelosetLabel = new System.Windows.Forms.Label();
             this.viitosetLabel = new System.Windows.Forms.Label();
             this.kuutosetLabel = new System.Windows.Forms.Label();
-            this.bonus_resultsLabel = new System.Windows.Forms.Label();
-            this.valisumma_resultsLabel = new System.Windows.Forms.Label();
-            this.kuutoset_resultsLabel = new System.Windows.Forms.Label();
-            this.viitoset_resultsLabel = new System.Windows.Forms.Label();
-            this.neloset_resultsLabel = new System.Windows.Forms.Label();
-            this.kolmoset_resultsLabel = new System.Windows.Forms.Label();
-            this.kakkoset_resultsLabel = new System.Windows.Forms.Label();
-            this.ykkoset_resultsLabel = new System.Windows.Forms.Label();
             this.bonusLabel = new System.Windows.Forms.Label();
             this.valisummaLabel = new System.Windows.Forms.Label();
             this.bottomRecordContainer_Panel = new System.Windows.Forms.Panel();
+            this.bottomResultsContainer = new System.Windows.Forms.Panel();
+            this.pari_resultsLabel = new System.Windows.Forms.Label();
+            this.kaksi_paria_resultsLabel = new System.Windows.Forms.Label();
+            this.kolme_samaa_resultsLabel = new System.Windows.Forms.Label();
+            this.nelja_samaa_resultsLabel = new System.Windows.Forms.Label();
+            this.pieni_suora_resultsLabel = new System.Windows.Forms.Label();
+            this.iso_suora_resultsLabel = new System.Windows.Forms.Label();
+            this.tayskasi_resultsLabel = new System.Windows.Forms.Label();
+            this.sattuma_resultsLabel = new System.Windows.Forms.Label();
+            this.yatzy_resultsLabel = new System.Windows.Forms.Label();
+            this.summa_resultsLabel = new System.Windows.Forms.Label();
             this.bottomCategories_Panel = new System.Windows.Forms.Panel();
             this.pariLabel = new System.Windows.Forms.Label();
             this.kaksi_pariaLabel = new System.Windows.Forms.Label();
@@ -68,19 +80,7 @@ partial class YatzyForm
             this.sattumaLabel = new System.Windows.Forms.Label();
             this.yatzyLabel = new System.Windows.Forms.Label();
             this.summaLabel = new System.Windows.Forms.Label();
-            this.summa_resultsLabel = new System.Windows.Forms.Label();
-            this.yatzy_resultsLabel = new System.Windows.Forms.Label();
-            this.sattuma_resultsLabel = new System.Windows.Forms.Label();
-            this.tayskasi_resultsLabel = new System.Windows.Forms.Label();
-            this.iso_suora_resultsLabel = new System.Windows.Forms.Label();
-            this.pieni_suora_resultsLabel = new System.Windows.Forms.Label();
-            this.nelja_samaa_resultsLabel = new System.Windows.Forms.Label();
-            this.kolme_samaa_resultsLabel = new System.Windows.Forms.Label();
-            this.kaksi_paria_resultsLabel = new System.Windows.Forms.Label();
-            this.pari_resultsLabel = new System.Windows.Forms.Label();
             this.combinationsPanel = new System.Windows.Forms.Panel();
-            this.upperResultsContainer = new System.Windows.Forms.Panel();
-            this.bottomResultsContainer = new System.Windows.Forms.Panel();
             this.diceResultsWindow.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.diceButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.diceButton2)).BeginInit();
@@ -88,12 +88,12 @@ partial class YatzyForm
             ((System.ComponentModel.ISupportInitialize)(this.diceButton4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.diceButton5)).BeginInit();
             this.upperRecordContainer_Panel.SuspendLayout();
+            this.upperResultsContainer.SuspendLayout();
             this.upperCategories_Panel.SuspendLayout();
             this.bottomRecordContainer_Panel.SuspendLayout();
+            this.bottomResultsContainer.SuspendLayout();
             this.bottomCategories_Panel.SuspendLayout();
             this.combinationsPanel.SuspendLayout();
-            this.upperResultsContainer.SuspendLayout();
-            this.bottomResultsContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // diceWindow
@@ -212,11 +212,105 @@ partial class YatzyForm
             this.upperRecordContainer_Panel.Controls.Add(this.upperCategories_Panel);
             this.upperRecordContainer_Panel.Controls.Add(this.bonusLabel);
             this.upperRecordContainer_Panel.Controls.Add(this.valisummaLabel);
-            this.upperRecordContainer_Panel.Dock = System.Windows.Forms.DockStyle.Top;
             this.upperRecordContainer_Panel.Location = new System.Drawing.Point(0, 0);
             this.upperRecordContainer_Panel.Name = "upperRecordContainer_Panel";
-            this.upperRecordContainer_Panel.Size = new System.Drawing.Size(507, 288);
+            this.upperRecordContainer_Panel.Size = new System.Drawing.Size(332, 288);
             this.upperRecordContainer_Panel.TabIndex = 23;
+            // 
+            // upperResultsContainer
+            // 
+            this.upperResultsContainer.Controls.Add(this.ykkoset_resultsLabel);
+            this.upperResultsContainer.Controls.Add(this.kakkoset_resultsLabel);
+            this.upperResultsContainer.Controls.Add(this.kolmoset_resultsLabel);
+            this.upperResultsContainer.Controls.Add(this.neloset_resultsLabel);
+            this.upperResultsContainer.Controls.Add(this.viitoset_resultsLabel);
+            this.upperResultsContainer.Controls.Add(this.kuutoset_resultsLabel);
+            this.upperResultsContainer.Controls.Add(this.valisumma_resultsLabel);
+            this.upperResultsContainer.Controls.Add(this.bonus_resultsLabel);
+            this.upperResultsContainer.Location = new System.Drawing.Point(265, 2);
+            this.upperResultsContainer.Name = "upperResultsContainer";
+            this.upperResultsContainer.Size = new System.Drawing.Size(64, 285);
+            this.upperResultsContainer.TabIndex = 40;
+            // 
+            // ykkoset_resultsLabel
+            // 
+            this.ykkoset_resultsLabel.AutoSize = true;
+            this.ykkoset_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ykkoset_resultsLabel.Location = new System.Drawing.Point(9, 9);
+            this.ykkoset_resultsLabel.Name = "ykkoset_resultsLabel";
+            this.ykkoset_resultsLabel.Size = new System.Drawing.Size(29, 32);
+            this.ykkoset_resultsLabel.TabIndex = 38;
+            this.ykkoset_resultsLabel.Text = "0";
+            // 
+            // kakkoset_resultsLabel
+            // 
+            this.kakkoset_resultsLabel.AutoSize = true;
+            this.kakkoset_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.kakkoset_resultsLabel.Location = new System.Drawing.Point(9, 41);
+            this.kakkoset_resultsLabel.Name = "kakkoset_resultsLabel";
+            this.kakkoset_resultsLabel.Size = new System.Drawing.Size(29, 32);
+            this.kakkoset_resultsLabel.TabIndex = 37;
+            this.kakkoset_resultsLabel.Text = "0";
+            // 
+            // kolmoset_resultsLabel
+            // 
+            this.kolmoset_resultsLabel.AutoSize = true;
+            this.kolmoset_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.kolmoset_resultsLabel.Location = new System.Drawing.Point(9, 73);
+            this.kolmoset_resultsLabel.Name = "kolmoset_resultsLabel";
+            this.kolmoset_resultsLabel.Size = new System.Drawing.Size(29, 32);
+            this.kolmoset_resultsLabel.TabIndex = 36;
+            this.kolmoset_resultsLabel.Text = "0";
+            // 
+            // neloset_resultsLabel
+            // 
+            this.neloset_resultsLabel.AutoSize = true;
+            this.neloset_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.neloset_resultsLabel.Location = new System.Drawing.Point(9, 105);
+            this.neloset_resultsLabel.Name = "neloset_resultsLabel";
+            this.neloset_resultsLabel.Size = new System.Drawing.Size(29, 32);
+            this.neloset_resultsLabel.TabIndex = 35;
+            this.neloset_resultsLabel.Text = "0";
+            // 
+            // viitoset_resultsLabel
+            // 
+            this.viitoset_resultsLabel.AutoSize = true;
+            this.viitoset_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.viitoset_resultsLabel.Location = new System.Drawing.Point(9, 137);
+            this.viitoset_resultsLabel.Name = "viitoset_resultsLabel";
+            this.viitoset_resultsLabel.Size = new System.Drawing.Size(29, 32);
+            this.viitoset_resultsLabel.TabIndex = 34;
+            this.viitoset_resultsLabel.Text = "0";
+            // 
+            // kuutoset_resultsLabel
+            // 
+            this.kuutoset_resultsLabel.AutoSize = true;
+            this.kuutoset_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.kuutoset_resultsLabel.Location = new System.Drawing.Point(9, 169);
+            this.kuutoset_resultsLabel.Name = "kuutoset_resultsLabel";
+            this.kuutoset_resultsLabel.Size = new System.Drawing.Size(29, 32);
+            this.kuutoset_resultsLabel.TabIndex = 33;
+            this.kuutoset_resultsLabel.Text = "0";
+            // 
+            // valisumma_resultsLabel
+            // 
+            this.valisumma_resultsLabel.AutoSize = true;
+            this.valisumma_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.valisumma_resultsLabel.Location = new System.Drawing.Point(9, 211);
+            this.valisumma_resultsLabel.Name = "valisumma_resultsLabel";
+            this.valisumma_resultsLabel.Size = new System.Drawing.Size(29, 32);
+            this.valisumma_resultsLabel.TabIndex = 32;
+            this.valisumma_resultsLabel.Text = "0";
+            // 
+            // bonus_resultsLabel
+            // 
+            this.bonus_resultsLabel.AutoSize = true;
+            this.bonus_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.bonus_resultsLabel.Location = new System.Drawing.Point(9, 243);
+            this.bonus_resultsLabel.Name = "bonus_resultsLabel";
+            this.bonus_resultsLabel.Size = new System.Drawing.Size(29, 32);
+            this.bonus_resultsLabel.TabIndex = 31;
+            this.bonus_resultsLabel.Text = "0";
             // 
             // upperCategories_Panel
             // 
@@ -297,95 +391,15 @@ partial class YatzyForm
             this.kuutosetLabel.Text = "Kuutoset";
             this.kuutosetLabel.Click += new System.EventHandler(this.kuutosetLabel_Click);
             // 
-            // bonus_resultsLabel
-            // 
-            this.bonus_resultsLabel.AutoSize = true;
-            this.bonus_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.bonus_resultsLabel.Location = new System.Drawing.Point(11, 243);
-            this.bonus_resultsLabel.Name = "bonus_resultsLabel";
-            this.bonus_resultsLabel.Size = new System.Drawing.Size(29, 32);
-            this.bonus_resultsLabel.TabIndex = 31;
-            this.bonus_resultsLabel.Text = "0";
-            // 
-            // valisumma_resultsLabel
-            // 
-            this.valisumma_resultsLabel.AutoSize = true;
-            this.valisumma_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.valisumma_resultsLabel.Location = new System.Drawing.Point(11, 211);
-            this.valisumma_resultsLabel.Name = "valisumma_resultsLabel";
-            this.valisumma_resultsLabel.Size = new System.Drawing.Size(29, 32);
-            this.valisumma_resultsLabel.TabIndex = 32;
-            this.valisumma_resultsLabel.Text = "0";
-            // 
-            // kuutoset_resultsLabel
-            // 
-            this.kuutoset_resultsLabel.AutoSize = true;
-            this.kuutoset_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.kuutoset_resultsLabel.Location = new System.Drawing.Point(11, 169);
-            this.kuutoset_resultsLabel.Name = "kuutoset_resultsLabel";
-            this.kuutoset_resultsLabel.Size = new System.Drawing.Size(29, 32);
-            this.kuutoset_resultsLabel.TabIndex = 33;
-            this.kuutoset_resultsLabel.Text = "0";
-            // 
-            // viitoset_resultsLabel
-            // 
-            this.viitoset_resultsLabel.AutoSize = true;
-            this.viitoset_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.viitoset_resultsLabel.Location = new System.Drawing.Point(11, 137);
-            this.viitoset_resultsLabel.Name = "viitoset_resultsLabel";
-            this.viitoset_resultsLabel.Size = new System.Drawing.Size(29, 32);
-            this.viitoset_resultsLabel.TabIndex = 34;
-            this.viitoset_resultsLabel.Text = "0";
-            // 
-            // neloset_resultsLabel
-            // 
-            this.neloset_resultsLabel.AutoSize = true;
-            this.neloset_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.neloset_resultsLabel.Location = new System.Drawing.Point(11, 105);
-            this.neloset_resultsLabel.Name = "neloset_resultsLabel";
-            this.neloset_resultsLabel.Size = new System.Drawing.Size(29, 32);
-            this.neloset_resultsLabel.TabIndex = 35;
-            this.neloset_resultsLabel.Text = "0";
-            // 
-            // kolmoset_resultsLabel
-            // 
-            this.kolmoset_resultsLabel.AutoSize = true;
-            this.kolmoset_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.kolmoset_resultsLabel.Location = new System.Drawing.Point(11, 73);
-            this.kolmoset_resultsLabel.Name = "kolmoset_resultsLabel";
-            this.kolmoset_resultsLabel.Size = new System.Drawing.Size(29, 32);
-            this.kolmoset_resultsLabel.TabIndex = 36;
-            this.kolmoset_resultsLabel.Text = "0";
-            // 
-            // kakkoset_resultsLabel
-            // 
-            this.kakkoset_resultsLabel.AutoSize = true;
-            this.kakkoset_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.kakkoset_resultsLabel.Location = new System.Drawing.Point(11, 41);
-            this.kakkoset_resultsLabel.Name = "kakkoset_resultsLabel";
-            this.kakkoset_resultsLabel.Size = new System.Drawing.Size(29, 32);
-            this.kakkoset_resultsLabel.TabIndex = 37;
-            this.kakkoset_resultsLabel.Text = "0";
-            // 
-            // ykkoset_resultsLabel
-            // 
-            this.ykkoset_resultsLabel.AutoSize = true;
-            this.ykkoset_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ykkoset_resultsLabel.Location = new System.Drawing.Point(11, 9);
-            this.ykkoset_resultsLabel.Name = "ykkoset_resultsLabel";
-            this.ykkoset_resultsLabel.Size = new System.Drawing.Size(29, 32);
-            this.ykkoset_resultsLabel.TabIndex = 38;
-            this.ykkoset_resultsLabel.Text = "0";
-            // 
             // bonusLabel
             // 
             this.bonusLabel.AutoSize = true;
             this.bonusLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.bonusLabel.Location = new System.Drawing.Point(12, 245);
             this.bonusLabel.Name = "bonusLabel";
-            this.bonusLabel.Size = new System.Drawing.Size(440, 32);
+            this.bonusLabel.Size = new System.Drawing.Size(254, 32);
             this.bonusLabel.TabIndex = 28;
-            this.bonusLabel.Text = "Bonus (63 pistettä tai enemmän)";
+            this.bonusLabel.Text = "Bonus (p. >= 63p.)";
             // 
             // valisummaLabel
             // 
@@ -402,11 +416,127 @@ partial class YatzyForm
             this.bottomRecordContainer_Panel.Controls.Add(this.bottomResultsContainer);
             this.bottomRecordContainer_Panel.Controls.Add(this.bottomCategories_Panel);
             this.bottomRecordContainer_Panel.Controls.Add(this.summaLabel);
-            this.bottomRecordContainer_Panel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.bottomRecordContainer_Panel.Location = new System.Drawing.Point(0, 294);
             this.bottomRecordContainer_Panel.Name = "bottomRecordContainer_Panel";
-            this.bottomRecordContainer_Panel.Size = new System.Drawing.Size(507, 357);
+            this.bottomRecordContainer_Panel.Size = new System.Drawing.Size(332, 357);
             this.bottomRecordContainer_Panel.TabIndex = 24;
+            // 
+            // bottomResultsContainer
+            // 
+            this.bottomResultsContainer.Controls.Add(this.pari_resultsLabel);
+            this.bottomResultsContainer.Controls.Add(this.kaksi_paria_resultsLabel);
+            this.bottomResultsContainer.Controls.Add(this.kolme_samaa_resultsLabel);
+            this.bottomResultsContainer.Controls.Add(this.nelja_samaa_resultsLabel);
+            this.bottomResultsContainer.Controls.Add(this.pieni_suora_resultsLabel);
+            this.bottomResultsContainer.Controls.Add(this.iso_suora_resultsLabel);
+            this.bottomResultsContainer.Controls.Add(this.tayskasi_resultsLabel);
+            this.bottomResultsContainer.Controls.Add(this.sattuma_resultsLabel);
+            this.bottomResultsContainer.Controls.Add(this.yatzy_resultsLabel);
+            this.bottomResultsContainer.Controls.Add(this.summa_resultsLabel);
+            this.bottomResultsContainer.Location = new System.Drawing.Point(265, 4);
+            this.bottomResultsContainer.Name = "bottomResultsContainer";
+            this.bottomResultsContainer.Size = new System.Drawing.Size(64, 355);
+            this.bottomResultsContainer.TabIndex = 44;
+            // 
+            // pari_resultsLabel
+            // 
+            this.pari_resultsLabel.AutoSize = true;
+            this.pari_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.pari_resultsLabel.Location = new System.Drawing.Point(9, 9);
+            this.pari_resultsLabel.Name = "pari_resultsLabel";
+            this.pari_resultsLabel.Size = new System.Drawing.Size(29, 32);
+            this.pari_resultsLabel.TabIndex = 42;
+            this.pari_resultsLabel.Text = "0";
+            // 
+            // kaksi_paria_resultsLabel
+            // 
+            this.kaksi_paria_resultsLabel.AutoSize = true;
+            this.kaksi_paria_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.kaksi_paria_resultsLabel.Location = new System.Drawing.Point(9, 41);
+            this.kaksi_paria_resultsLabel.Name = "kaksi_paria_resultsLabel";
+            this.kaksi_paria_resultsLabel.Size = new System.Drawing.Size(29, 32);
+            this.kaksi_paria_resultsLabel.TabIndex = 40;
+            this.kaksi_paria_resultsLabel.Text = "0";
+            // 
+            // kolme_samaa_resultsLabel
+            // 
+            this.kolme_samaa_resultsLabel.AutoSize = true;
+            this.kolme_samaa_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.kolme_samaa_resultsLabel.Location = new System.Drawing.Point(9, 73);
+            this.kolme_samaa_resultsLabel.Name = "kolme_samaa_resultsLabel";
+            this.kolme_samaa_resultsLabel.Size = new System.Drawing.Size(29, 32);
+            this.kolme_samaa_resultsLabel.TabIndex = 33;
+            this.kolme_samaa_resultsLabel.Text = "0";
+            // 
+            // nelja_samaa_resultsLabel
+            // 
+            this.nelja_samaa_resultsLabel.AutoSize = true;
+            this.nelja_samaa_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.nelja_samaa_resultsLabel.Location = new System.Drawing.Point(9, 105);
+            this.nelja_samaa_resultsLabel.Name = "nelja_samaa_resultsLabel";
+            this.nelja_samaa_resultsLabel.Size = new System.Drawing.Size(29, 32);
+            this.nelja_samaa_resultsLabel.TabIndex = 34;
+            this.nelja_samaa_resultsLabel.Text = "0";
+            // 
+            // pieni_suora_resultsLabel
+            // 
+            this.pieni_suora_resultsLabel.AutoSize = true;
+            this.pieni_suora_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.pieni_suora_resultsLabel.Location = new System.Drawing.Point(9, 137);
+            this.pieni_suora_resultsLabel.Name = "pieni_suora_resultsLabel";
+            this.pieni_suora_resultsLabel.Size = new System.Drawing.Size(29, 32);
+            this.pieni_suora_resultsLabel.TabIndex = 35;
+            this.pieni_suora_resultsLabel.Text = "0";
+            // 
+            // iso_suora_resultsLabel
+            // 
+            this.iso_suora_resultsLabel.AutoSize = true;
+            this.iso_suora_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.iso_suora_resultsLabel.Location = new System.Drawing.Point(9, 169);
+            this.iso_suora_resultsLabel.Name = "iso_suora_resultsLabel";
+            this.iso_suora_resultsLabel.Size = new System.Drawing.Size(29, 32);
+            this.iso_suora_resultsLabel.TabIndex = 36;
+            this.iso_suora_resultsLabel.Text = "0";
+            // 
+            // tayskasi_resultsLabel
+            // 
+            this.tayskasi_resultsLabel.AutoSize = true;
+            this.tayskasi_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.tayskasi_resultsLabel.Location = new System.Drawing.Point(9, 201);
+            this.tayskasi_resultsLabel.Name = "tayskasi_resultsLabel";
+            this.tayskasi_resultsLabel.Size = new System.Drawing.Size(29, 32);
+            this.tayskasi_resultsLabel.TabIndex = 41;
+            this.tayskasi_resultsLabel.Text = "0";
+            // 
+            // sattuma_resultsLabel
+            // 
+            this.sattuma_resultsLabel.AutoSize = true;
+            this.sattuma_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.sattuma_resultsLabel.Location = new System.Drawing.Point(9, 233);
+            this.sattuma_resultsLabel.Name = "sattuma_resultsLabel";
+            this.sattuma_resultsLabel.Size = new System.Drawing.Size(29, 32);
+            this.sattuma_resultsLabel.TabIndex = 38;
+            this.sattuma_resultsLabel.Text = "0";
+            // 
+            // yatzy_resultsLabel
+            // 
+            this.yatzy_resultsLabel.AutoSize = true;
+            this.yatzy_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.yatzy_resultsLabel.Location = new System.Drawing.Point(9, 265);
+            this.yatzy_resultsLabel.Name = "yatzy_resultsLabel";
+            this.yatzy_resultsLabel.Size = new System.Drawing.Size(29, 32);
+            this.yatzy_resultsLabel.TabIndex = 39;
+            this.yatzy_resultsLabel.Text = "0";
+            // 
+            // summa_resultsLabel
+            // 
+            this.summa_resultsLabel.AutoSize = true;
+            this.summa_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.summa_resultsLabel.Location = new System.Drawing.Point(9, 307);
+            this.summa_resultsLabel.Name = "summa_resultsLabel";
+            this.summa_resultsLabel.Size = new System.Drawing.Size(29, 32);
+            this.summa_resultsLabel.TabIndex = 37;
+            this.summa_resultsLabel.Text = "0";
             // 
             // bottomCategories_Panel
             // 
@@ -533,154 +663,21 @@ partial class YatzyForm
             this.summaLabel.TabIndex = 23;
             this.summaLabel.Text = "Summa";
             // 
-            // summa_resultsLabel
-            // 
-            this.summa_resultsLabel.AutoSize = true;
-            this.summa_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.summa_resultsLabel.Location = new System.Drawing.Point(16, 307);
-            this.summa_resultsLabel.Name = "summa_resultsLabel";
-            this.summa_resultsLabel.Size = new System.Drawing.Size(29, 32);
-            this.summa_resultsLabel.TabIndex = 37;
-            this.summa_resultsLabel.Text = "0";
-            // 
-            // yatzy_resultsLabel
-            // 
-            this.yatzy_resultsLabel.AutoSize = true;
-            this.yatzy_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.yatzy_resultsLabel.Location = new System.Drawing.Point(16, 265);
-            this.yatzy_resultsLabel.Name = "yatzy_resultsLabel";
-            this.yatzy_resultsLabel.Size = new System.Drawing.Size(29, 32);
-            this.yatzy_resultsLabel.TabIndex = 39;
-            this.yatzy_resultsLabel.Text = "0";
-            // 
-            // sattuma_resultsLabel
-            // 
-            this.sattuma_resultsLabel.AutoSize = true;
-            this.sattuma_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.sattuma_resultsLabel.Location = new System.Drawing.Point(16, 233);
-            this.sattuma_resultsLabel.Name = "sattuma_resultsLabel";
-            this.sattuma_resultsLabel.Size = new System.Drawing.Size(29, 32);
-            this.sattuma_resultsLabel.TabIndex = 38;
-            this.sattuma_resultsLabel.Text = "0";
-            // 
-            // tayskasi_resultsLabel
-            // 
-            this.tayskasi_resultsLabel.AutoSize = true;
-            this.tayskasi_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.tayskasi_resultsLabel.Location = new System.Drawing.Point(16, 201);
-            this.tayskasi_resultsLabel.Name = "tayskasi_resultsLabel";
-            this.tayskasi_resultsLabel.Size = new System.Drawing.Size(29, 32);
-            this.tayskasi_resultsLabel.TabIndex = 41;
-            this.tayskasi_resultsLabel.Text = "0";
-            // 
-            // iso_suora_resultsLabel
-            // 
-            this.iso_suora_resultsLabel.AutoSize = true;
-            this.iso_suora_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.iso_suora_resultsLabel.Location = new System.Drawing.Point(16, 169);
-            this.iso_suora_resultsLabel.Name = "iso_suora_resultsLabel";
-            this.iso_suora_resultsLabel.Size = new System.Drawing.Size(29, 32);
-            this.iso_suora_resultsLabel.TabIndex = 36;
-            this.iso_suora_resultsLabel.Text = "0";
-            // 
-            // pieni_suora_resultsLabel
-            // 
-            this.pieni_suora_resultsLabel.AutoSize = true;
-            this.pieni_suora_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.pieni_suora_resultsLabel.Location = new System.Drawing.Point(16, 137);
-            this.pieni_suora_resultsLabel.Name = "pieni_suora_resultsLabel";
-            this.pieni_suora_resultsLabel.Size = new System.Drawing.Size(29, 32);
-            this.pieni_suora_resultsLabel.TabIndex = 35;
-            this.pieni_suora_resultsLabel.Text = "0";
-            // 
-            // nelja_samaa_resultsLabel
-            // 
-            this.nelja_samaa_resultsLabel.AutoSize = true;
-            this.nelja_samaa_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.nelja_samaa_resultsLabel.Location = new System.Drawing.Point(16, 105);
-            this.nelja_samaa_resultsLabel.Name = "nelja_samaa_resultsLabel";
-            this.nelja_samaa_resultsLabel.Size = new System.Drawing.Size(29, 32);
-            this.nelja_samaa_resultsLabel.TabIndex = 34;
-            this.nelja_samaa_resultsLabel.Text = "0";
-            // 
-            // kolme_samaa_resultsLabel
-            // 
-            this.kolme_samaa_resultsLabel.AutoSize = true;
-            this.kolme_samaa_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.kolme_samaa_resultsLabel.Location = new System.Drawing.Point(16, 73);
-            this.kolme_samaa_resultsLabel.Name = "kolme_samaa_resultsLabel";
-            this.kolme_samaa_resultsLabel.Size = new System.Drawing.Size(29, 32);
-            this.kolme_samaa_resultsLabel.TabIndex = 33;
-            this.kolme_samaa_resultsLabel.Text = "0";
-            // 
-            // kaksi_paria_resultsLabel
-            // 
-            this.kaksi_paria_resultsLabel.AutoSize = true;
-            this.kaksi_paria_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.kaksi_paria_resultsLabel.Location = new System.Drawing.Point(16, 41);
-            this.kaksi_paria_resultsLabel.Name = "kaksi_paria_resultsLabel";
-            this.kaksi_paria_resultsLabel.Size = new System.Drawing.Size(29, 32);
-            this.kaksi_paria_resultsLabel.TabIndex = 40;
-            this.kaksi_paria_resultsLabel.Text = "0";
-            // 
-            // pari_resultsLabel
-            // 
-            this.pari_resultsLabel.AutoSize = true;
-            this.pari_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.pari_resultsLabel.Location = new System.Drawing.Point(16, 9);
-            this.pari_resultsLabel.Name = "pari_resultsLabel";
-            this.pari_resultsLabel.Size = new System.Drawing.Size(29, 32);
-            this.pari_resultsLabel.TabIndex = 42;
-            this.pari_resultsLabel.Text = "0";
-            // 
             // combinationsPanel
             // 
             this.combinationsPanel.Controls.Add(this.bottomRecordContainer_Panel);
             this.combinationsPanel.Controls.Add(this.upperRecordContainer_Panel);
-            this.combinationsPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.combinationsPanel.Location = new System.Drawing.Point(677, 0);
             this.combinationsPanel.Name = "combinationsPanel";
-            this.combinationsPanel.Size = new System.Drawing.Size(507, 651);
+            this.combinationsPanel.Size = new System.Drawing.Size(340, 651);
             this.combinationsPanel.TabIndex = 4;
             this.combinationsPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.combinationsPanel_Paint);
-            // 
-            // upperResultsContainer
-            // 
-            this.upperResultsContainer.Controls.Add(this.ykkoset_resultsLabel);
-            this.upperResultsContainer.Controls.Add(this.kakkoset_resultsLabel);
-            this.upperResultsContainer.Controls.Add(this.kolmoset_resultsLabel);
-            this.upperResultsContainer.Controls.Add(this.neloset_resultsLabel);
-            this.upperResultsContainer.Controls.Add(this.viitoset_resultsLabel);
-            this.upperResultsContainer.Controls.Add(this.kuutoset_resultsLabel);
-            this.upperResultsContainer.Controls.Add(this.valisumma_resultsLabel);
-            this.upperResultsContainer.Controls.Add(this.bonus_resultsLabel);
-            this.upperResultsContainer.Location = new System.Drawing.Point(456, 2);
-            this.upperResultsContainer.Name = "upperResultsContainer";
-            this.upperResultsContainer.Size = new System.Drawing.Size(49, 285);
-            this.upperResultsContainer.TabIndex = 40;
-            // 
-            // bottomResultsContainer
-            // 
-            this.bottomResultsContainer.Controls.Add(this.pari_resultsLabel);
-            this.bottomResultsContainer.Controls.Add(this.kaksi_paria_resultsLabel);
-            this.bottomResultsContainer.Controls.Add(this.kolme_samaa_resultsLabel);
-            this.bottomResultsContainer.Controls.Add(this.nelja_samaa_resultsLabel);
-            this.bottomResultsContainer.Controls.Add(this.pieni_suora_resultsLabel);
-            this.bottomResultsContainer.Controls.Add(this.iso_suora_resultsLabel);
-            this.bottomResultsContainer.Controls.Add(this.tayskasi_resultsLabel);
-            this.bottomResultsContainer.Controls.Add(this.sattuma_resultsLabel);
-            this.bottomResultsContainer.Controls.Add(this.yatzy_resultsLabel);
-            this.bottomResultsContainer.Controls.Add(this.summa_resultsLabel);
-            this.bottomResultsContainer.Location = new System.Drawing.Point(456, 4);
-            this.bottomResultsContainer.Name = "bottomResultsContainer";
-            this.bottomResultsContainer.Size = new System.Drawing.Size(52, 355);
-            this.bottomResultsContainer.TabIndex = 44;
             // 
             // YatzyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 651);
+            this.ClientSize = new System.Drawing.Size(1019, 651);
             this.Controls.Add(this.combinationsPanel);
             this.Controls.Add(this.diceResultsWindow);
             this.Controls.Add(this.allowedNumberOfThrows);
@@ -701,17 +698,17 @@ partial class YatzyForm
             ((System.ComponentModel.ISupportInitialize)(this.diceButton5)).EndInit();
             this.upperRecordContainer_Panel.ResumeLayout(false);
             this.upperRecordContainer_Panel.PerformLayout();
+            this.upperResultsContainer.ResumeLayout(false);
+            this.upperResultsContainer.PerformLayout();
             this.upperCategories_Panel.ResumeLayout(false);
             this.upperCategories_Panel.PerformLayout();
             this.bottomRecordContainer_Panel.ResumeLayout(false);
             this.bottomRecordContainer_Panel.PerformLayout();
+            this.bottomResultsContainer.ResumeLayout(false);
+            this.bottomResultsContainer.PerformLayout();
             this.bottomCategories_Panel.ResumeLayout(false);
             this.bottomCategories_Panel.PerformLayout();
             this.combinationsPanel.ResumeLayout(false);
-            this.upperResultsContainer.ResumeLayout(false);
-            this.upperResultsContainer.PerformLayout();
-            this.bottomResultsContainer.ResumeLayout(false);
-            this.bottomResultsContainer.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

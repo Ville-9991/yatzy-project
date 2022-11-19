@@ -44,7 +44,15 @@ public partial class YatzyForm{
             // pöytäkirjan alaosa
 
             else if(categoryID == 6 & possible_combination[6]){ // pari
-                score = occurance_times_ordered[0].Item1 *2;
+
+                // joskus voi käydä niin että käyttäjä saa useamman parin, joista toiset ovat arvokkaampia (ne ovat listassa jälkimmäisä)
+                // joten annetaan pisteisiin ne arvokaammat nopat
+                if(occurance_times_ordered[1].Item1 > occurance_times_ordered[0].Item1){
+                    score = occurance_times_ordered[1].Item1 *2;
+                }
+                else{
+                    score = occurance_times_ordered[0].Item1 *2;
+                }
             }
             else if(categoryID == 7 & possible_combination[7]){ // kaksi paria
                 score = (occurance_times_ordered[0].Item1 *2) + (occurance_times_ordered[1].Item1 *2);
@@ -73,6 +81,14 @@ public partial class YatzyForm{
 
             return score;
         } // scroring
+
+        valisumma_resultsLabel.Text = Convert.ToString(category_score.Where((x, y) => y < 6).Sum());
+
+        if(Int32.Parse(valisumma_resultsLabel.Text) >= 63){
+            bonus_resultsLabel.Text = Convert.ToString(50);
+        }
+
+        summa_resultsLabel.Text = Convert.ToString(category_score.Sum() + Int32.Parse(bonus_resultsLabel.Text));
 
     }
 
@@ -142,20 +158,7 @@ public partial class YatzyForm{
         int[] results_for_scoring = values.ToArray();
         var occurances_counted = countOccurances(results_for_scoring);
 
-        if(category_selected[6] & possible_combination[6]){ // jos pari
-
-            for(int index = 0; index < results_for_scoring.Count(); index++){
-                results_for_scoring[index] = 0;
-            }
-
-            results_for_scoring[0] = occurances_counted[0].Item1;
-            results_for_scoring[1] = occurances_counted[0].Item1;
-
-            return results_for_scoring;
-
-        }
-
-        else if(category_selected[7] & possible_combination[7]){ // jos kaksi paria
+        if((category_selected[6] & possible_combination[6]) | (category_selected[7] & possible_combination[7])){ // jos pari tai kaksi paria
 
             for(int index = 0; index < results_for_scoring.Count(); index++){
                 results_for_scoring[index] = 0;
