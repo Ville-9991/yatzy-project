@@ -147,8 +147,6 @@ partial class YatzyForm
             this.diceButton1.Size = new System.Drawing.Size(75, 75);
             this.diceButton1.TabIndex = 0;
             this.diceButton1.TabStop = false;
-            this.diceButton1.Click += new System.EventHandler(this.diceButton1_Click);
-            this.diceButton1.Paint += new System.Windows.Forms.PaintEventHandler(this.diceButton1_Paint);
             // 
             // diceButton2
             // 
@@ -158,8 +156,6 @@ partial class YatzyForm
             this.diceButton2.Size = new System.Drawing.Size(75, 75);
             this.diceButton2.TabIndex = 0;
             this.diceButton2.TabStop = false;
-            this.diceButton2.Click += new System.EventHandler(this.diceButton2_Click);
-            this.diceButton2.Paint += new System.Windows.Forms.PaintEventHandler(this.diceButton2_Paint);
             // 
             // diceButton3
             // 
@@ -169,8 +165,6 @@ partial class YatzyForm
             this.diceButton3.Size = new System.Drawing.Size(75, 75);
             this.diceButton3.TabIndex = 0;
             this.diceButton3.TabStop = false;
-            this.diceButton3.Click += new System.EventHandler(this.diceButton3_Click);
-            this.diceButton3.Paint += new System.Windows.Forms.PaintEventHandler(this.diceButton3_Paint);
             // 
             // diceButton4
             // 
@@ -180,8 +174,6 @@ partial class YatzyForm
             this.diceButton4.Size = new System.Drawing.Size(75, 75);
             this.diceButton4.TabIndex = 0;
             this.diceButton4.TabStop = false;
-            this.diceButton4.Click += new System.EventHandler(this.diceButton4_Click);
-            this.diceButton4.Paint += new System.Windows.Forms.PaintEventHandler(this.diceButton4_Paint);
             // 
             // diceButton5
             // 
@@ -191,8 +183,6 @@ partial class YatzyForm
             this.diceButton5.Size = new System.Drawing.Size(75, 75);
             this.diceButton5.TabIndex = 0;
             this.diceButton5.TabStop = false;
-            this.diceButton5.Click += new System.EventHandler(this.diceButton5_Click);
-            this.diceButton5.Paint += new System.Windows.Forms.PaintEventHandler(this.diceButton5_Paint);
             // 
             // acceptResults_btn
             // 
@@ -334,7 +324,6 @@ partial class YatzyForm
             this.ykkosetLabel.Size = new System.Drawing.Size(118, 32);
             this.ykkosetLabel.TabIndex = 36;
             this.ykkosetLabel.Text = "Ykköset";
-            this.ykkosetLabel.Click += new System.EventHandler(this.ykkosetLabel_Click);
             // 
             // kakkosetLabel
             // 
@@ -345,7 +334,6 @@ partial class YatzyForm
             this.kakkosetLabel.Size = new System.Drawing.Size(135, 32);
             this.kakkosetLabel.TabIndex = 35;
             this.kakkosetLabel.Text = "Kakkoset";
-            this.kakkosetLabel.Click += new System.EventHandler(this.kakkosetLabel_Click);
             // 
             // kolmosetLabel
             // 
@@ -356,7 +344,6 @@ partial class YatzyForm
             this.kolmosetLabel.Size = new System.Drawing.Size(141, 32);
             this.kolmosetLabel.TabIndex = 31;
             this.kolmosetLabel.Text = "Kolmoset";
-            this.kolmosetLabel.Click += new System.EventHandler(this.kolmosetLabel_Click);
             // 
             // nelosetLabel
             // 
@@ -367,7 +354,6 @@ partial class YatzyForm
             this.nelosetLabel.Size = new System.Drawing.Size(113, 32);
             this.nelosetLabel.TabIndex = 32;
             this.nelosetLabel.Text = "Neloset";
-            this.nelosetLabel.Click += new System.EventHandler(this.nelosetLabel_Click);
             // 
             // viitosetLabel
             // 
@@ -378,7 +364,6 @@ partial class YatzyForm
             this.viitosetLabel.Size = new System.Drawing.Size(113, 32);
             this.viitosetLabel.TabIndex = 33;
             this.viitosetLabel.Text = "Viitoset";
-            this.viitosetLabel.Click += new System.EventHandler(this.viitosetLabel_Click);
             // 
             // kuutosetLabel
             // 
@@ -389,7 +374,6 @@ partial class YatzyForm
             this.kuutosetLabel.Size = new System.Drawing.Size(133, 32);
             this.kuutosetLabel.TabIndex = 34;
             this.kuutosetLabel.Text = "Kuutoset";
-            this.kuutosetLabel.Click += new System.EventHandler(this.kuutosetLabel_Click);
             // 
             // bonusLabel
             // 
@@ -563,7 +547,6 @@ partial class YatzyForm
             this.pariLabel.Size = new System.Drawing.Size(66, 32);
             this.pariLabel.TabIndex = 24;
             this.pariLabel.Text = "Pari";
-            this.pariLabel.Click += new System.EventHandler(this.pariLabel_Click);
             // 
             // kaksi_pariaLabel
             // 
@@ -574,7 +557,6 @@ partial class YatzyForm
             this.kaksi_pariaLabel.Size = new System.Drawing.Size(161, 32);
             this.kaksi_pariaLabel.TabIndex = 25;
             this.kaksi_pariaLabel.Text = "Kaksi paria";
-            this.kaksi_pariaLabel.Click += new System.EventHandler(this.kaksi_pariaLabel_Click);
             // 
             // kolme_samaaLabel
             // 
@@ -585,7 +567,6 @@ partial class YatzyForm
             this.kolme_samaaLabel.Size = new System.Drawing.Size(194, 32);
             this.kolme_samaaLabel.TabIndex = 26;
             this.kolme_samaaLabel.Text = "Kolme samaa";
-            this.kolme_samaaLabel.Click += new System.EventHandler(this.kolme_samaaLabel_Click);
             // 
             // nelja_samaaLabel
             // 
@@ -596,7 +577,6 @@ partial class YatzyForm
             this.nelja_samaaLabel.Size = new System.Drawing.Size(174, 32);
             this.nelja_samaaLabel.TabIndex = 27;
             this.nelja_samaaLabel.Text = "Neljä samaa";
-            this.nelja_samaaLabel.Click += new System.EventHandler(this.nelja_samaaLabel_Click);
             // 
             // pieni_suoraLabel
             // 
@@ -607,7 +587,6 @@ partial class YatzyForm
             this.pieni_suoraLabel.Size = new System.Drawing.Size(163, 32);
             this.pieni_suoraLabel.TabIndex = 28;
             this.pieni_suoraLabel.Text = "Pieni suora";
-            this.pieni_suoraLabel.Click += new System.EventHandler(this.pieni_suoraLabel_Click);
             // 
             // iso_suoraLabel
             // 
@@ -618,7 +597,6 @@ partial class YatzyForm
             this.iso_suoraLabel.Size = new System.Drawing.Size(137, 32);
             this.iso_suoraLabel.TabIndex = 29;
             this.iso_suoraLabel.Text = "Iso suora";
-            this.iso_suoraLabel.Click += new System.EventHandler(this.iso_suoraLabel_Click);
             // 
             // tayskasiLabel
             // 
@@ -629,7 +607,6 @@ partial class YatzyForm
             this.tayskasiLabel.Size = new System.Drawing.Size(130, 32);
             this.tayskasiLabel.TabIndex = 30;
             this.tayskasiLabel.Text = "Täyskäsi";
-            this.tayskasiLabel.Click += new System.EventHandler(this.tayskasiLabel_Click);
             // 
             // sattumaLabel
             // 
@@ -640,7 +617,6 @@ partial class YatzyForm
             this.sattumaLabel.Size = new System.Drawing.Size(123, 32);
             this.sattumaLabel.TabIndex = 31;
             this.sattumaLabel.Text = "Sattuma";
-            this.sattumaLabel.Click += new System.EventHandler(this.sattumaLabel_Click);
             // 
             // yatzyLabel
             // 
@@ -651,7 +627,6 @@ partial class YatzyForm
             this.yatzyLabel.Size = new System.Drawing.Size(84, 32);
             this.yatzyLabel.TabIndex = 33;
             this.yatzyLabel.Text = "Yatzy";
-            this.yatzyLabel.Click += new System.EventHandler(this.yatzyLabel_Click);
             // 
             // summaLabel
             // 

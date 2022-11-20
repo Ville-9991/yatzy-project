@@ -5,6 +5,9 @@ public partial class YatzyForm : Form
     public YatzyForm()
     {
         InitializeComponent();
+
+        Init_DiceButtonEvents();
+        Init_CategoryEvents();
     }
 
     // alustetaan (listaksi) viisi noppaa, joilla on kuusi sivua, 
@@ -96,17 +99,6 @@ public partial class YatzyForm : Form
 
     }
 
-    private List<PictureBox> getAllDiceButtons(){
-        // dice buttoneita on monta, joten niistä on hyvä tehdä lista
-        // helpompaa käsittelyä varten
-        List<PictureBox> pictureBoxes = new List<PictureBox>();
-
-        foreach (PictureBox control in diceResultsWindow.Controls){
-            pictureBoxes.Add(control);
-        }
-        return pictureBoxes;
-    }
-
     // leveys ja pituus ovat luokan sisäisesti "globaaleja", 
     // jotta niitä voi käyttää kaikissa funktioissa
     private int img_width = 75;
@@ -191,10 +183,6 @@ public partial class YatzyForm : Form
             border_list.Add(border);
         }
 
-        // for(int index = 0; index < diceButton_list.Count(); index++){
-        //     diceButton_list[index].Click += new System.EventHandler(this.diceButtonClick);
-        // }
-
         Pen pen = new Pen(Color.Blue, 5);
 
         for(int index = 0; index < dice_selected.Count(); index++){
@@ -242,22 +230,6 @@ public partial class YatzyForm : Form
         }
 
         enableAcceptBtn();
-    }
-
-    private List<Label> getAllCategoryLabels(){
-        // sama homma kuten dice buttonien kanssa, mutta category/combination labeleita on paljon enemmän
-        // joten on vain parempi tehdä yksi iso lista ja käsitellä niitä indeksittäin
-
-        List<Label> CategoryLabels = new List<Label>();
-
-        foreach (Label label in upperCategories_Panel.Controls){
-            CategoryLabels.Add(label);
-        }
-
-        foreach (Label label in bottomCategories_Panel.Controls){
-            CategoryLabels.Add(label);
-        }
-        return CategoryLabels; // pituus on 15 elementtiä (14 kun aloitetaan 0:sta...)
     }
 
     private void enableAcceptBtn(){
