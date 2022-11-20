@@ -435,6 +435,9 @@ public partial class YatzyForm : Form
             if(category_completed[index]){
                 categoires[index].ForeColor = Color.LightGray;
             }
+            else if(!category_completed[index] & possible_combination[index]){
+                categoires[index].ForeColor = Color.Black;
+            }
         }
 
         applyScore();
@@ -493,6 +496,8 @@ public partial class YatzyForm : Form
         diceResultsWindow.Invalidate();
         throwDice_btn.Enabled = true;
         acceptResults_btn.Enabled = false;
+
+        combinationsPanel.Invalidate();
     }
 
     private void finishTheSession(){
@@ -514,12 +519,13 @@ public partial class YatzyForm : Form
             category_score[index] = 0;
 
             labels[index].Text = Convert.ToString(0);
-            categoires[index].ForeColor = Color.Black;
         }
 
         valisumma_resultsLabel.Text = Convert.ToString(0);
         bonus_resultsLabel.Text = Convert.ToString(0);
         summa_resultsLabel.Text = Convert.ToString(0);
+
+        combinationsPanel.Invalidate();
 
         }
 

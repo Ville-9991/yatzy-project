@@ -40,7 +40,7 @@ public partial class YatzyForm{
             category_selected[0] = true; // laitetaan merkki että kategoria on valittuna
             this.combinationsPanel.Invalidate(createCategoryBorders()[0]);
         }
-        else{
+        else if (category_selected[0] && !category_locked[0]){
             category_selected[0] = false;
             this.combinationsPanel.Invalidate(createCategoryBorders()[0]);
         }
@@ -56,7 +56,7 @@ public partial class YatzyForm{
             category_selected[1] = true;
             this.combinationsPanel.Invalidate(createCategoryBorders()[1]);
         }
-        else{
+        else if (category_selected[1] && !category_locked[1]){
             category_selected[1] = false;
             this.combinationsPanel.Invalidate(createCategoryBorders()[1]);
         }
@@ -71,7 +71,7 @@ public partial class YatzyForm{
             category_selected[2] = true;
             this.combinationsPanel.Invalidate(createCategoryBorders()[2]);
         }
-        else{
+        else if (category_selected[2] && !category_locked[2]){
             category_selected[2] = false;
             this.combinationsPanel.Invalidate(createCategoryBorders()[2]);
         }
@@ -86,7 +86,7 @@ public partial class YatzyForm{
             category_selected[3] = true;
             this.combinationsPanel.Invalidate(createCategoryBorders()[3]);
         }
-        else{
+        else if (category_selected[3] && !category_locked[3]){
             category_selected[3] = false;
             this.combinationsPanel.Invalidate(createCategoryBorders()[3]);
         }
@@ -102,7 +102,7 @@ public partial class YatzyForm{
             category_selected[4] = true;
             this.combinationsPanel.Invalidate(createCategoryBorders()[4]);
         }
-        else{
+        else if (category_selected[4] && !category_locked[4]){
             category_selected[4] = false;
             this.combinationsPanel.Invalidate(createCategoryBorders()[4]);
         }
@@ -117,7 +117,7 @@ public partial class YatzyForm{
             category_selected[5] = true;
             this.combinationsPanel.Invalidate(createCategoryBorders()[5]);
         }
-        else{
+        else if (category_selected[5] && !category_locked[5]){
             category_selected[5] = false;
             this.combinationsPanel.Invalidate(createCategoryBorders()[5]);
         }
@@ -132,7 +132,7 @@ public partial class YatzyForm{
             category_selected[6] = true;
             this.combinationsPanel.Invalidate(createCategoryBorders()[6]);
         }
-        else{
+        else if (category_selected[6] && !category_locked[6]){
             category_selected[6] = false;
             this.combinationsPanel.Invalidate(createCategoryBorders()[6]);
         }
@@ -147,7 +147,7 @@ public partial class YatzyForm{
             category_selected[7] = true;
             this.combinationsPanel.Invalidate(createCategoryBorders()[7]);
         }
-        else{
+        else if (category_selected[7] && !category_locked[7]){
             category_selected[7] = false;
             this.combinationsPanel.Invalidate(createCategoryBorders()[7]);
         }
@@ -162,7 +162,7 @@ public partial class YatzyForm{
             category_selected[8] = true;
             this.combinationsPanel.Invalidate(createCategoryBorders()[8]);
         }
-        else{
+        else if (category_selected[8] && !category_locked[8]){
             category_selected[8] = false;
             this.combinationsPanel.Invalidate(createCategoryBorders()[8]);
         }
@@ -177,7 +177,7 @@ public partial class YatzyForm{
             category_selected[9] = true;
             this.combinationsPanel.Invalidate(createCategoryBorders()[9]);
         }
-        else{
+        else if (category_selected[9] && !category_locked[9]){
             category_selected[9] = false;
             this.combinationsPanel.Invalidate(createCategoryBorders()[9]);
         }
@@ -192,7 +192,7 @@ public partial class YatzyForm{
             category_selected[10] = true;
             this.combinationsPanel.Invalidate(createCategoryBorders()[10]);
         }
-        else{
+        else if (category_selected[9] && !category_locked[9]){
             category_selected[10] = false;
             this.combinationsPanel.Invalidate(createCategoryBorders()[10]);
         }
@@ -207,7 +207,7 @@ public partial class YatzyForm{
             category_selected[11] = true;
             this.combinationsPanel.Invalidate(createCategoryBorders()[11]);
         }
-        else{
+        else if (category_selected[11] && !category_locked[11]){
             category_selected[11] = false;
             this.combinationsPanel.Invalidate(createCategoryBorders()[11]);
         }
@@ -222,7 +222,7 @@ public partial class YatzyForm{
             category_selected[12] = true;
             this.combinationsPanel.Invalidate(createCategoryBorders()[12]);
         }
-        else{
+        else if (category_selected[12] && !category_locked[12]){
             category_selected[12] = false;
             this.combinationsPanel.Invalidate(createCategoryBorders()[12]);
         }
@@ -237,7 +237,7 @@ public partial class YatzyForm{
             category_selected[13] = true;
             this.combinationsPanel.Invalidate(createCategoryBorders()[13]);
         }
-        else{
+        else if (category_selected[13] && !category_locked[13]){
             category_selected[13] = false;
             this.combinationsPanel.Invalidate(createCategoryBorders()[13]);
         }
@@ -252,7 +252,7 @@ public partial class YatzyForm{
             category_selected[14] = true;
             this.combinationsPanel.Invalidate(createCategoryBorders()[14]);
         }
-        else{
+        else if (category_selected[14] && !category_locked[14]){
             category_selected[14] = false;
             this.combinationsPanel.Invalidate(createCategoryBorders()[14]);
         }
