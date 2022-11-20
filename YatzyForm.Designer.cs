@@ -28,6 +28,10 @@ partial class YatzyForm
     /// </summary>
     private void InitializeComponent()
     {
+            System.Windows.Forms.Label label1;
+            System.Windows.Forms.Label label2;
+            System.Windows.Forms.Label label3;
+            System.Windows.Forms.Label label4;
             this.diceWindow = new System.Windows.Forms.Panel();
             this.throwDice_btn = new System.Windows.Forms.Button();
             this.allowedNumberOfThrows = new System.Windows.Forms.Label();
@@ -81,6 +85,16 @@ partial class YatzyForm
             this.yatzyLabel = new System.Windows.Forms.Label();
             this.summaLabel = new System.Windows.Forms.Label();
             this.combinationsPanel = new System.Windows.Forms.Panel();
+            this.diceValues_Panel = new System.Windows.Forms.Panel();
+            this.diceValue_label1 = new System.Windows.Forms.Label();
+            this.diceValue_label2 = new System.Windows.Forms.Label();
+            this.diceValue_label3 = new System.Windows.Forms.Label();
+            this.diceValue_label4 = new System.Windows.Forms.Label();
+            this.diceValue_label5 = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
             this.diceResultsWindow.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.diceButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.diceButton2)).BeginInit();
@@ -94,7 +108,36 @@ partial class YatzyForm
             this.bottomResultsContainer.SuspendLayout();
             this.bottomCategories_Panel.SuspendLayout();
             this.combinationsPanel.SuspendLayout();
+            this.diceValues_Panel.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(19, 563);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(433, 22);
+            label1.TabIndex = 5;
+            label1.Text = "Valitse haluamasi noppa / kategoria painamalla sitä";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label2.Location = new System.Drawing.Point(19, 586);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(326, 22);
+            label2.TabIndex = 5;
+            label2.Text = "Paina uudelleen poistaaksesi valinnan";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(611, 468);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(19, 22);
+            label3.TabIndex = 6;
+            label3.Text = "x";
             // 
             // diceWindow
             // 
@@ -648,11 +691,84 @@ partial class YatzyForm
             this.combinationsPanel.TabIndex = 4;
             this.combinationsPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.combinationsPanel_Paint);
             // 
+            // diceValues_Panel
+            // 
+            this.diceValues_Panel.Controls.Add(this.diceValue_label1);
+            this.diceValues_Panel.Controls.Add(this.diceValue_label2);
+            this.diceValues_Panel.Controls.Add(this.diceValue_label3);
+            this.diceValues_Panel.Controls.Add(this.diceValue_label4);
+            this.diceValues_Panel.Controls.Add(this.diceValue_label5);
+            this.diceValues_Panel.Location = new System.Drawing.Point(9, 412);
+            this.diceValues_Panel.Name = "diceValues_Panel";
+            this.diceValues_Panel.Size = new System.Drawing.Size(470, 40);
+            this.diceValues_Panel.TabIndex = 7;
+            this.diceValues_Panel.Visible = false;
+            // 
+            // diceValue_label1
+            // 
+            this.diceValue_label1.AutoSize = true;
+            this.diceValue_label1.Location = new System.Drawing.Point(37, 8);
+            this.diceValue_label1.Name = "diceValue_label1";
+            this.diceValue_label1.Size = new System.Drawing.Size(21, 22);
+            this.diceValue_label1.TabIndex = 0;
+            this.diceValue_label1.Text = "0";
+            // 
+            // diceValue_label2
+            // 
+            this.diceValue_label2.AutoSize = true;
+            this.diceValue_label2.Location = new System.Drawing.Point(133, 8);
+            this.diceValue_label2.Name = "diceValue_label2";
+            this.diceValue_label2.Size = new System.Drawing.Size(21, 22);
+            this.diceValue_label2.TabIndex = 0;
+            this.diceValue_label2.Text = "0";
+            // 
+            // diceValue_label3
+            // 
+            this.diceValue_label3.AutoSize = true;
+            this.diceValue_label3.Location = new System.Drawing.Point(224, 8);
+            this.diceValue_label3.Name = "diceValue_label3";
+            this.diceValue_label3.Size = new System.Drawing.Size(21, 22);
+            this.diceValue_label3.TabIndex = 0;
+            this.diceValue_label3.Text = "0";
+            // 
+            // diceValue_label4
+            // 
+            this.diceValue_label4.AutoSize = true;
+            this.diceValue_label4.Location = new System.Drawing.Point(316, 8);
+            this.diceValue_label4.Name = "diceValue_label4";
+            this.diceValue_label4.Size = new System.Drawing.Size(21, 22);
+            this.diceValue_label4.TabIndex = 0;
+            this.diceValue_label4.Text = "0";
+            // 
+            // diceValue_label5
+            // 
+            this.diceValue_label5.AutoSize = true;
+            this.diceValue_label5.Location = new System.Drawing.Point(408, 8);
+            this.diceValue_label5.Name = "diceValue_label5";
+            this.diceValue_label5.Size = new System.Drawing.Size(21, 22);
+            this.diceValue_label5.TabIndex = 0;
+            this.diceValue_label5.Text = "0";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label4.Location = new System.Drawing.Point(19, 608);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(338, 22);
+            label4.TabIndex = 5;
+            label4.Text = "Heitettyäsi nopat, kaikki valinnat lukitaan";
+            // 
             // YatzyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1019, 651);
+            this.Controls.Add(this.diceValues_Panel);
+            this.Controls.Add(label3);
+            this.Controls.Add(label4);
+            this.Controls.Add(label2);
+            this.Controls.Add(label1);
             this.Controls.Add(this.combinationsPanel);
             this.Controls.Add(this.diceResultsWindow);
             this.Controls.Add(this.allowedNumberOfThrows);
@@ -684,6 +800,8 @@ partial class YatzyForm
             this.bottomCategories_Panel.ResumeLayout(false);
             this.bottomCategories_Panel.PerformLayout();
             this.combinationsPanel.ResumeLayout(false);
+            this.diceValues_Panel.ResumeLayout(false);
+            this.diceValues_Panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -744,4 +862,10 @@ partial class YatzyForm
     private Panel combinationsPanel;
     private Panel upperResultsContainer;
     private Panel bottomResultsContainer;
+    private Panel diceValues_Panel;
+    private Label diceValue_label5;
+    private Label diceValue_label4;
+    private Label diceValue_label3;
+    private Label diceValue_label2;
+    private Label diceValue_label1;
 }

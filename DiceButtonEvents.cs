@@ -52,7 +52,7 @@ public partial class YatzyForm{
 
                 int index = checkWhichButtonEventWasTriggered(buttonEvent);
 
-                if(dices_thrown[index] && !dice_selected[index]){
+                if(dices_thrown[index] & !dice_selected[index]){
                 e.Graphics.DrawImage(dices[index].DrawDice(), diceButtonImageBoundary());
                 dices_thrown[index] = false;
                 }

@@ -7,7 +7,7 @@ public partial class YatzyForm{
         var labels = getAllResultsLabels();
 
         for(int index = 0; index < category_locked.Count(); index++){
-            if(category_locked[index] && category_score[index] == 0){
+            if(category_locked[index] & category_score[index] == 0){
                 category_score[index] = checkScoring(index);
                 labels[index].Text = Convert.ToString(category_score[index]);
             }

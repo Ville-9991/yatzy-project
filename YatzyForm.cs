@@ -28,6 +28,7 @@ public partial class YatzyForm : Form
     // TODO tee array "category_complete", joka osoittaa onko kategoria käyty läpi ja määrittää sen lukituksen.
     // Lukitus pysyy niin kauna kunnes koko peli on pelattu loppuun
     private bool[] category_completed = new bool[15];
+    private bool round_started = false;
 
     private void throwDice_btn_Click(object sender, EventArgs e)
     {
@@ -44,6 +45,8 @@ public partial class YatzyForm : Form
 
         allowedNumberOfThrows.Text = Convert.ToString(throws_left -1);
 
+        round_started = true;
+
         enableDiceButtons();
         lockAllCategories();
 
@@ -51,6 +54,8 @@ public partial class YatzyForm : Form
         diceWindow.Invalidate();
 
         combinationsPanel.Invalidate();
+
+        displayDiceValues();
         
     }
 
@@ -99,6 +104,25 @@ public partial class YatzyForm : Form
 
     }
 
+    private void displayDiceValues(){
+
+        diceValues_Panel.Visible = true;
+
+        int index = 0;
+        foreach (Label control in diceValues_Panel.Controls){
+
+
+            if(dice_selected[index]){
+                control.Text = Convert.ToString(results_to_be_accepted[index]);
+            }
+            else{
+                control.Text = Convert.ToString(results[index]);
+            }
+
+            index++;
+        }
+    }
+    
     // leveys ja pituus ovat luokan sisäisesti "globaaleja", 
     // jotta niitä voi käyttää kaikissa funktioissa
     private int img_width = 75;
@@ -137,15 +161,15 @@ public partial class YatzyForm : Form
 
                 if(storedRectangles[index].IntersectsWith(rect)){
 
-                    if(storedRectangles[index].X < rect.X && storedRectangles[index].Y > rect.Y){
+                    if(storedRectangles[index].X < rect.X & storedRectangles[index].Y > rect.Y){
                         storedRectangles[index] = new Rectangle(storedRectangles[index].X + 50, storedRectangles[index].Y, img_width, img_height);
                     }
 
-                    else if(storedRectangles[index].X > rect.X && storedRectangles[index].Y < rect.Y){
+                    else if(storedRectangles[index].X > rect.X & storedRectangles[index].Y < rect.Y){
                         storedRectangles[index] = new Rectangle(storedRectangles[index].X, storedRectangles[index].Y + 50, img_width, img_height);
                     }
 
-                    else if(storedRectangles[index].X == rect.X && storedRectangles[index].Y == rect.Y){
+                    else if(storedRectangles[index].X == rect.X & storedRectangles[index].Y == rect.Y){
                         storedRectangles[index] = new Rectangle(storedRectangles[index].X + 50, storedRectangles[index].Y + 50, img_width, img_height);
                     }
 
@@ -160,9 +184,6 @@ public partial class YatzyForm : Form
                 e.Graphics.DrawImage(dices[index].DrawDice(), storedRectangles[index]); // kuvien sijoittaminen suorakulmioiden mukaan
             }
         }
-
-        // TODO kuvien tallessa pitäminen
-        // on keksittävä jokin keino miten kuvat voi pitää tallessa käyttäjän valinnan mukaan
 
     }
 
@@ -214,19 +235,27 @@ public partial class YatzyForm : Form
         }
 
         for(int index = 0; index < categoires.Count(); index++){
-            if(possible_combination[index] && !category_selected[index] && !category_locked[index] && !any_selected){
+            if(possible_combination[index] & !category_selected[index] & !category_locked[index] & !any_selected){
                 categoires[index].ForeColor = Color.Green;
             }
-            else if(!possible_combination[index] && !category_locked[index]){
+            else if(!possible_combination[index] & !category_locked[index]){
                 categoires[index].ForeColor = Color.Black;
             }
         }
 
         for(int index = 0; index < category_selected.Count(); index++){
-            if (category_selected[index] && !category_locked[index]){
+            if (category_selected[index] & !category_locked[index]){
                 categoires[index].ForeColor = Color.Blue;
             }
-            
+            else if(!category_selected[index] & !possible_combination[index] & !category_completed[index]){
+                categoires[index].ForeColor = Color.Black;
+            }
+        }
+
+        for(int index = 0; index < category_locked.Count(); index++){
+            if(category_locked[index] & !category_selected[index] & !category_completed[index]){
+                categoires[index].ForeColor = Color.SlateGray;
+            }
         }
 
         enableAcceptBtn();
@@ -244,6 +273,7 @@ public partial class YatzyForm : Form
 
     private void acceptResults_btn_Click(object sender, EventArgs e)
     {
+        round_started = false;
 
         var categoires = getAllCategoryLabels();
 
@@ -319,6 +349,8 @@ public partial class YatzyForm : Form
         for(int index = 0; index < possible_combination.Count(); index++){
             possible_combination[index] = false;
         }
+
+        diceValues_Panel.Visible = false;
 
         diceWindow.Visible = false;
         diceResultsWindow.Invalidate();
