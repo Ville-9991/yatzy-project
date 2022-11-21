@@ -25,21 +25,21 @@ public partial class YatzyForm{
             // ainoastaan ei valitut kategoriat
             // eikä kategoria voi myöskään olla lukittuna
             // varmuuden vuoksi tehdään neljäs tarkastus että mikään ei ole valittuna
-            if(possible_combination[index] & !category_selected[index] & !category_locked[index] & !any_selected){
+            if(possible_combination[index] && !category_selected[index] && !category_locked[index] && !any_selected){
                 // vain tuolloin korostetaan vihreällä värillä
                 categoires[index].ForeColor = Color.Green;
             }
-            else if(!possible_combination[index] & !category_locked[index]){
+            else if(!possible_combination[index] && !category_locked[index]){
                 categoires[index].ForeColor = Color.Black;
             }
         }
 
         for(int index = 0; index < category_selected.Count(); index++){
             // ainoastaa valitut kategoriat korostetaan sinisellä
-            if (category_selected[index] & !category_locked[index]){
+            if (category_selected[index] && !category_locked[index]){
                 categoires[index].ForeColor = Color.Blue;
             }
-            else if(!category_selected[index] & !possible_combination[index] & !category_completed[index] & !any_selected){
+            else if(!category_selected[index] && !possible_combination[index] && !category_completed[index] && !any_selected){
                 categoires[index].ForeColor = Color.Black;
             }
         }
@@ -48,7 +48,7 @@ public partial class YatzyForm{
             // kun kategoria on valittuna ja noppaa on heitetty
             // kategoriat lukitaan, joten on hyvä korostaa tämä käyttäjälle
             // omalla värillään
-            if(category_locked[index] & !category_selected[index] & !category_completed[index]){
+            if(category_locked[index] && !category_selected[index] && !category_completed[index]){
                 categoires[index].ForeColor = Color.SlateGray;
             }
         }

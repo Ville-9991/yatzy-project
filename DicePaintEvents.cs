@@ -36,15 +36,15 @@ public partial class YatzyForm{
 
                 if(storedRectangles[index].IntersectsWith(rect)){
 
-                    if(storedRectangles[index].X < rect.X & storedRectangles[index].Y > rect.Y){
+                    if(storedRectangles[index].X < rect.X && storedRectangles[index].Y > rect.Y){
                         storedRectangles[index] = new Rectangle(storedRectangles[index].X + 50, storedRectangles[index].Y, img_width, img_height);
                     }
 
-                    else if(storedRectangles[index].X > rect.X & storedRectangles[index].Y < rect.Y){
+                    else if(storedRectangles[index].X > rect.X && storedRectangles[index].Y < rect.Y){
                         storedRectangles[index] = new Rectangle(storedRectangles[index].X, storedRectangles[index].Y + 50, img_width, img_height);
                     }
 
-                    else if(storedRectangles[index].X == rect.X & storedRectangles[index].Y == rect.Y){
+                    else if(storedRectangles[index].X == rect.X && storedRectangles[index].Y == rect.Y){
                         storedRectangles[index] = new Rectangle(storedRectangles[index].X + 50, storedRectangles[index].Y + 50, img_width, img_height);
                     }
 

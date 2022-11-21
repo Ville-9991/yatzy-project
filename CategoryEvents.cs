@@ -33,7 +33,7 @@ public partial class YatzyForm{
                 int index = checkWhichCategoryWasClicked(categoryClickEvent);
 
                 // näytettään käyttäjälle ikkuna, missä kerrottaan että kategoria on tavoittelematon
-                if(!possible_combination[index] & !category_selected[index] & !category_locked[index] & round_started){
+                if(!possible_combination[index] && !category_selected[index] && !category_locked[index] && round_started){
                     string message = $"Kategoria '{categoryClickEvent?.Text}' voi olla tavoittelematon noppien arvon perusteella. \n\nJos hyäksyt tulokset, voit saada 0 pistettä.";
                     const string title = "Tavoittelematon yhdistelmä";
 
@@ -42,14 +42,14 @@ public partial class YatzyForm{
                     DialogResult result = MessageBox.Show(message, title, buttons);
                 }
 
-                if(!category_selected[index] & !category_locked[index]){ // suoritetaan vain silloin kun kategoria ei ole valittuna tai lukittuna
+                if(!category_selected[index] && !category_locked[index]){ // suoritetaan vain silloin kun kategoria ei ole valittuna tai lukittuna
                 deselectAllCategories(); // laitetaan kaikki kategoria painikkeet false (myös tämä), koska vain yhtä kategoriaa voi tavoitella kerrallaan
 
                 category_selected[index] = true; // laitetaan merkki että kategoria on valittuna
                 this.combinationsPanel.Invalidate(createCategoryBorders()[index]);
                 }
 
-                else if (category_selected[index] & !category_locked[index]){
+                else if (category_selected[index] && !category_locked[index]){
                     category_selected[index] = false;
                     this.combinationsPanel.Invalidate(createCategoryBorders()[index]);
                 }

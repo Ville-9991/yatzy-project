@@ -7,7 +7,7 @@ public partial class YatzyForm{
         var labels = getAllResultsLabels();
 
         for(int index = 0; index < category_locked.Count(); index++){
-            if(category_locked[index] & category_score[index] == 0){
+            if(category_locked[index] && category_score[index] == 0){
                 category_score[index] = checkScoring(index);
                 labels[index].Text = Convert.ToString(category_score[index]);
             }
@@ -28,22 +28,22 @@ public partial class YatzyForm{
 
             // etsitään listan joukosta arvo, katsotaan onko kategoria mahdollinen
             // ja summataan arvo itsellään
-            if(categoryID == 0 & possible_combination[0]){
+            if(categoryID == 0 && possible_combination[0]){
                 score = accepted_results.Where((a, b) => a == 1).Sum();
             }
-            else if(categoryID == 1 & possible_combination[1]){
+            else if(categoryID == 1 && possible_combination[1]){
                 score = accepted_results.Where((a, b) => a == 2).Sum();
             }
-            else if(categoryID == 2 & possible_combination[2]){
+            else if(categoryID == 2 && possible_combination[2]){
                 score = accepted_results.Where((a, b) => a == 3).Sum();
             }
-            else if(categoryID == 3 & possible_combination[3]){
+            else if(categoryID == 3 && possible_combination[3]){
                 score = accepted_results.Where((a, b) => a == 4).Sum();
             }
-            else if(categoryID == 4 & possible_combination[4]){
+            else if(categoryID == 4 && possible_combination[4]){
                 score = accepted_results.Where((a, b) => a == 5).Sum();
             }
-            else if(categoryID == 5 & possible_combination[5]){
+            else if(categoryID == 5 && possible_combination[5]){
                 score = accepted_results.Where((a, b) => a == 6).Sum();
             }
 
@@ -51,7 +51,7 @@ public partial class YatzyForm{
 
             // alaosassa käytetään pisteytyksessä esiintymis määrä listan
             // ensimmäista (ja toista) arvoa (Item1)
-            else if(categoryID == 6 & possible_combination[6]){ // pari
+            else if(categoryID == 6 && possible_combination[6]){ // pari
 
                 // joskus voi käydä niin että käyttäjä saa useamman parin, joista toiset ovat arvokkaampia (ne ovat listassa jälkimmäisä)
                 // joten annetaan pisteisiin ne arvokaammat nopat
@@ -62,29 +62,29 @@ public partial class YatzyForm{
                     score = occurance_times_ordered[0].Item1 *2;
                 }
             }
-            else if(categoryID == 7 & possible_combination[7]){ // kaksi paria
+            else if(categoryID == 7 && possible_combination[7]){ // kaksi paria
                 // arvo1 kertaa 2 + arvo2 kertaa 2
                 score = (occurance_times_ordered[0].Item1 *2) + (occurance_times_ordered[1].Item1 *2);
             }
-            else if(categoryID == 8 & possible_combination[8]){ // kolme samaa
+            else if(categoryID == 8 && possible_combination[8]){ // kolme samaa
                 score = occurance_times_ordered[0].Item1 *3; // arvo kertaa 3
             }
-            else if(categoryID == 9 & possible_combination[9]){ // neljä samaa
+            else if(categoryID == 9 && possible_combination[9]){ // neljä samaa
                 score = occurance_times_ordered[0].Item1 *4; // arvo kertaa 4
             }
-            else if(categoryID == 10 & possible_combination[10]){ // pieni suora
+            else if(categoryID == 10 && possible_combination[10]){ // pieni suora
                 score = 15; // aina 15 pistettä
             }
-            else if(categoryID == 11 & possible_combination[11]){ // iso suora
+            else if(categoryID == 11 && possible_combination[11]){ // iso suora
                 score = 20; // aina 20 pistettä
             }
-            else if(categoryID == 12 & possible_combination[12]){ // täyskäsi
+            else if(categoryID == 12 && possible_combination[12]){ // täyskäsi
                 score = (occurance_times_ordered[0].Item1 *3) + (occurance_times_ordered[1].Item1 *2);
             }
-            else if(categoryID == 13 & possible_combination[13]){ // sattuma
+            else if(categoryID == 13 && possible_combination[13]){ // sattuma
                 score = accepted_results.Sum(); // pisteet = on arvojen summa
             }
-            else if(categoryID == 14 & possible_combination[14]){ // yazty
+            else if(categoryID == 14 && possible_combination[14]){ // yazty
                 score = 50; // aina 50 pistettä
             }
 
@@ -280,7 +280,7 @@ public partial class YatzyForm{
         if(occurance_times_ordered[0].Item2 >= 2){ // pari
             possible_combination[6] = true;
         }
-        if((occurance_times_ordered[0].Item2 >= 2 & occurance_times_ordered[1].Item2 == 2)){ // kaksi paria
+        if((occurance_times_ordered[0].Item2 >= 2 && occurance_times_ordered[1].Item2 == 2)){ // kaksi paria
             possible_combination[7] = true;
         }
         if(occurance_times_ordered[0].Item2 >= 3){ // kolme samaa
@@ -295,7 +295,7 @@ public partial class YatzyForm{
         if(Enumerable.SequenceEqual(current_results.OrderBy(x => x), big_straight.OrderBy(x => x))){ // iso suora
             possible_combination[11] = true;
         }
-        if((occurance_times_ordered[0].Item2 == 3 & occurance_times_ordered[1].Item2 == 2)){ // täyskäsi
+        if((occurance_times_ordered[0].Item2 == 3 && occurance_times_ordered[1].Item2 == 2)){ // täyskäsi
                 possible_combination[12] = true;
         }
         if(set.Count() == 1){ // yatzy
