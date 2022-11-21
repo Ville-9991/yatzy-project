@@ -13,22 +13,33 @@ public partial class YatzyForm : Form
     // alustetaan (listaksi) viisi noppaa, joilla on kuusi sivua, 
     // jotta niiden metodeja/arvoja voidaan käyttää myöhemmin
     Dice[] dices = {new Dice(), new Dice(), new Dice(), new Dice(), new Dice()};
+    // diceButton (paint ja click) eventeille merkki siitä
+    // että nopan voi piirtää
     private bool[] dices_thrown = new bool[5];
     private bool[] dice_selected = new bool[5];
     private int[] results = new int[5]; // yksittäisten noppien tulokset
     private int[] results_to_be_accepted = new int[5]; // käyttäjän valitsemat nopat/tulokset
     private int[] category_score = new int[15]; // pöytäkirjan piseteet kategorioittain
 
-    // mahdolliset kategoriat, joita tavoitella (aluksi kaikki false, mutta mikäli ohjelma löytää noppien tuloksista mahdollisen, kategoria on true)
+    // mahdolliset kategoriat, joita tavoitella
+    // (aluksi kaikki false, mutta mikäli ohjelma löytää noppien tuloksista mahdollisen, kategoria on true)
     private bool[] possible_combination = new bool[15];
     private bool[] category_selected = new bool[15];
 
     // kategoria lukitaan sen myötä kun käyttäjä valitsee tavoittelemansa kategorian
     private bool[] category_locked = new bool[15];
-    // TODO tee array "category_complete", joka osoittaa onko kategoria käyty läpi ja määrittää sen lukituksen.
+    // "category_completed", joka osoittaa onko kategoria käyty läpi ja määrittää sen lukituksen.
     // Lukitus pysyy niin kauna kunnes koko peli on pelattu loppuun
     private bool[] category_completed = new bool[15];
+    // tarvitaan sen varalta mikäli käyttäjä valitsee
+    // tavoittelemattoman kategorian heitettyään nopat,
+    // jotta voidaan näyttää käyttäjälle ikkunna, jossa kerrotaan
+    // kategorian olevan tavoittelematon
     private bool round_started = false;
+    // leveys ja pituus ovat luokan sisäisesti "globaaleja", 
+    // jotta niitä voi käyttää kaikissa funktioissa
+    private int img_width = 75;
+    private int img_height = 75;
 
     private void throwDice_btn_Click(object sender, EventArgs e)
     {
@@ -50,6 +61,9 @@ public partial class YatzyForm : Form
         enableDiceButtons();
         lockAllCategories();
 
+        // Dice luokan value on aluksi 1, ja sen drawDice metodi,
+        // piirtää nopan value arvolla (tässä tapauksessa viisi 1-arvoista noppaa)
+        // heti kun diceWindow_Paint eventti latautuu, joten diceWindow on aluksi false
         diceWindow.Visible = true;
         diceWindow.Invalidate();
 
@@ -90,12 +104,16 @@ public partial class YatzyForm : Form
     private void lockAllCategories(){
         bool any_selected = false;
 
+        // kategorioita ei lukita ennen kun käyttäjä on valinnut
+        // kategorian ja heittänyt noppaa
         for(int index = 0; index < category_selected.Count(); index++){
             if(category_selected[index]){
                 any_selected = true;
             }
         }
 
+        // kun noppaa on heitetty ja käyttäjä on valinnut
+        // kategorian ennen heittoa, kategoriat lukitaan kierroksen ajaksi
         if(any_selected){
             for(int index = 0; index < category_locked.Count(); index++){
                 category_locked[index] = true;
@@ -105,28 +123,27 @@ public partial class YatzyForm : Form
     }
 
     private void displayDiceValues(){
+        // Näyttää noppien arvot käyttäjän mieleksi,
+        // ilman että hänen tarvitsee laskea noppien silmiä
 
+        // noppien arvon "Text" on alustettu 0:ksi, joten "Visble" on aluksi false
         diceValues_Panel.Visible = true;
 
         int index = 0;
-        foreach (Label control in diceValues_Panel.Controls){
+        // Sama perjaate kuten diceButtonien ja kategorien kanssa;
+        // niitä monta, joten on parempi käsitellä niitä indexittäin
+        foreach (Label diceValue_label in diceValues_Panel.Controls){
 
-
-            if(dice_selected[index]){
-                control.Text = Convert.ToString(results_to_be_accepted[index]);
+            if(dice_selected[index]){ // käyttäjän valinnan mukaan näytetään käyttäjän valitsemat nopan arvot
+                diceValue_label.Text = Convert.ToString(results_to_be_accepted[index]);
             }
             else{
-                control.Text = Convert.ToString(results[index]);
+                diceValue_label.Text = Convert.ToString(results[index]);
             }
 
             index++;
         }
     }
-    
-    // leveys ja pituus ovat luokan sisäisesti "globaaleja", 
-    // jotta niitä voi käyttää kaikissa funktioissa
-    private int img_width = 75;
-    private int img_height = 75;
 
     private void diceWindow_Paint(object sender, PaintEventArgs e)
     {
@@ -195,6 +212,8 @@ public partial class YatzyForm : Form
         Rectangle border = new Rectangle();
         List<Rectangle> border_list = new List<Rectangle>();
 
+        // luo maalattavalle käyttäjän valitsemat nopalle rajat
+        // joita viitataan indexittäin
         foreach(PictureBox dice_button in diceButton_list){
             border.X = dice_button.Location.X;
             border.Y = dice_button.Location.Y;
@@ -213,16 +232,18 @@ public partial class YatzyForm : Form
                     e.Graphics.DrawImage(new Bitmap(filename: $"img\\Dice{results_to_be_accepted[index]}.png"), border_list[index]);
                 }
                 catch{
-                    System.Console.WriteLine("Kuva tiedostoa viittaava indeksi ei latautunut...");
+                    Console.WriteLine("Kuva tiedostoa viittaava indeksi ei latautunut...");
                 }
             }
         }
         
     }
 
+    // tässä kontekstissa sanat kategoria (category) ja yhdistelämä (combination)
+    // merkitsee samaa asiaa
     private void combinationsPanel_Paint(object sender, PaintEventArgs e)
     {
-
+        // ensiksi noudetaan käyttäjän pisteet, jonka jälkeen tarkastetaan onko yhdistelmä mahdollinen
         checkIfPossibleForScoring(resultsForScoring(dice_selected, results, results_to_be_accepted));
 
         var categoires = getAllCategoryLabels();
@@ -235,7 +256,15 @@ public partial class YatzyForm : Form
         }
 
         for(int index = 0; index < categoires.Count(); index++){
+            // monta ehtoa, mutta ne ovat tärkeitä, jotta voidaan näyttää oikeita värejä
+            // yhdistemien valinnan ja lukituksen mukaan
+
+            // kategoria pitää olla mahdollinen
+            // ainoastaan ei valitut kategoriat
+            // eikä kategoria voi myöskään olla lukittuna
+            // varmuuden vuoksi tehdään neljäs tarkastus että mikään ei ole valittuna
             if(possible_combination[index] & !category_selected[index] & !category_locked[index] & !any_selected){
+                // vain tuolloin korostetaan vihreällä värillä
                 categoires[index].ForeColor = Color.Green;
             }
             else if(!possible_combination[index] & !category_locked[index]){
@@ -244,15 +273,19 @@ public partial class YatzyForm : Form
         }
 
         for(int index = 0; index < category_selected.Count(); index++){
+            // ainoastaa valitut kategoriat korostetaan sinisellä
             if (category_selected[index] & !category_locked[index]){
                 categoires[index].ForeColor = Color.Blue;
             }
-            else if(!category_selected[index] & !possible_combination[index] & !category_completed[index]){
+            else if(!category_selected[index] & !possible_combination[index] & !category_completed[index] & !any_selected){
                 categoires[index].ForeColor = Color.Black;
             }
         }
 
         for(int index = 0; index < category_locked.Count(); index++){
+            // kun kategoria on valittuna ja noppaa on heitetty
+            // kategoriat lukitaan, joten on hyvä korostaa tämä käyttäjälle
+            // omalla värillään
             if(category_locked[index] & !category_selected[index] & !category_completed[index]){
                 categoires[index].ForeColor = Color.SlateGray;
             }
@@ -263,12 +296,12 @@ public partial class YatzyForm : Form
 
     private void enableAcceptBtn(){
 
-        if(category_selected.Contains(true)){
+        // käyttäjän on valittava kategoria
+        // ennen kuin annetaan hänen painaa acceptResults_buttonia
+        if(category_selected.Contains(true))
             acceptResults_btn.Enabled = true;
-        }
-        else{
+        else
             acceptResults_btn.Enabled = false;
-        }
     }
 
     private void acceptResults_btn_Click(object sender, EventArgs e)
@@ -278,6 +311,8 @@ public partial class YatzyForm : Form
         var categoires = getAllCategoryLabels();
 
         for(int index = 0; index < category_locked.Count(); index++){
+            // ainoastaan ei suoritetuista kategorioista poistetaan
+            // lukitus
             if(!category_completed[index]){
                 category_locked[index] = false;
             }
@@ -285,16 +320,15 @@ public partial class YatzyForm : Form
 
         for(int index = 0; index < category_selected.Count(); index++){
             if(category_selected[index]){
-
-                category_locked[index] = true; // ainoastaan edellisellä kierroksella valittu kategoria lukitaan
+                // ainoastaan edellisellä kierroksella valittu kategoria lukitaan
+                category_locked[index] = true;
                 category_completed[index] = true;
             }
             
             if(category_completed[index]){
+                // suoritetuille kategoriolle on hyvä laitaa
+                // selkeä väri
                 categoires[index].ForeColor = Color.LightGray;
-            }
-            else if(!category_completed[index] & possible_combination[index]){
-                categoires[index].ForeColor = Color.Black;
             }
         }
 
@@ -307,31 +341,18 @@ public partial class YatzyForm : Form
 
     }
 
-    private List<Label> getAllResultsLabels(){
-        List<Label> resultLabels = new List<Label>();
-
-        foreach(Label label in upperResultsContainer.Controls){
-            resultLabels.Add(label);
-        }
-
-        foreach(Label label in bottomResultsContainer.Controls){
-            resultLabels.Add(label);
-        }
-
-        resultLabels.Remove(valisumma_resultsLabel);
-        resultLabels.Remove(bonus_resultsLabel);
-        resultLabels.Remove(summa_resultsLabel);
-
-        return resultLabels;
-    }
-
     private void softReset(){
+
+        // kuten nimi kertoo
+        // palauttaa kaikki muuttujat takaisin
+        // alustettuun muotoon
+        // uuden kierroksen aloittamamiseksi
 
         deselectAllCategories();
 
         allowedNumberOfThrows.Text = Convert.ToString(3);
 
-        for(int index = 0; index < dice_selected.Count(); index++){
+        for(int index = 0; index < dice_selected.Count(); index++){ // count = 5
             dice_selected[index] = false;
             dices_thrown[index] = false;
             dices[index].value = 0;
@@ -341,12 +362,12 @@ public partial class YatzyForm : Form
 
         var dice_button_list = getAllDiceButtons();
 
-        for(int index = 0; index < dice_button_list.Count(); index++){
+        for(int index = 0; index < dice_button_list.Count(); index++){ // count = 5
             dice_button_list[index].Enabled = false;
             dice_button_list[index].Invalidate();
         }
 
-        for(int index = 0; index < possible_combination.Count(); index++){
+        for(int index = 0; index < possible_combination.Count(); index++){ // count = 15
             possible_combination[index] = false;
         }
 
@@ -362,6 +383,8 @@ public partial class YatzyForm : Form
 
     private void finishTheSession(){
 
+        // ikkuna joka näyttää käyttäjälle pisteitensä tuloksen
+        // ja kysyy haluaako hän pelata uudelleen
         string message = $"Pisteitesi tulos: {summa_resultsLabel.Text} \n\nHaluatko pelata uudelleen?";
         const string title = "Game Over";
 
@@ -373,6 +396,8 @@ public partial class YatzyForm : Form
         var labels = getAllResultsLabels();
         var categoires = getAllCategoryLabels();
 
+        // poistaa lukitusen kaikista kategorioista ja nollaa pisteytyksen
+        // uutta peliä varten
         for(int index = 0; index < category_completed.Count(); index++){
             category_locked[index] = false;
             category_completed[index] = false;

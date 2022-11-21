@@ -61,9 +61,9 @@ public partial class YatzyForm{
         }
     }
 
-    // palauttaa indexin, jota käytetään muiden listojen käsittelyssä
-    // noppa painikkeen eventin mukaan
     private int checkWhichButtonEventWasTriggered(PictureBox? buttonEvent){
+        // palauttaa indexin, jota käytetään muiden listojen käsittelyssä
+        // noppa painikkeen eventin mukaan
 
         if(buttonEvent != null){
             var diceButton_list = getAllDiceButtons();
@@ -78,8 +78,8 @@ public partial class YatzyForm{
         return 0;
     }
 
-    // funktio joka luo ääriviivat noppa painikkeille
     private List<Rectangle> createDiceButtonBorders(){
+        // funktio joka luo ääriviivat noppa painikkeille
         var diceButton_list = getAllDiceButtons();
         Rectangle border = new Rectangle();
         List<Rectangle> border_list = new List<Rectangle>();
@@ -96,8 +96,8 @@ public partial class YatzyForm{
         return border_list;
     }
 
-    // apu funktio, joka luo noppa kuville rajat, jotta niitä ei tarvitse kaikkia käsin kirjoittaa
     private Rectangle diceButtonImageBoundary(){
+        // apu funktio, joka luo noppa kuville rajat, jotta niitä ei tarvitse kaikkia käsin kirjoittaa
         Rectangle boundary = new Rectangle(0, 0, img_width, img_height);
         return boundary;
     }

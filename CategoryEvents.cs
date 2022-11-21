@@ -22,14 +22,17 @@ public partial class YatzyForm{
         List<Label> categories = getAllCategoryLabels();
 
         foreach(Label category in categories){
-
+            //
             // categoryCombination_Click
+            //
             category.Click += (sender, e) => {
-
+                // lambda, joka luo jokaiselle 15:lle katgorialle
+                // "EventListener" -toiminnon painelluksen varalle
                 Label? categoryClickEvent = sender as Label;
 
                 int index = checkWhichCategoryWasClicked(categoryClickEvent);
 
+                // näytettään käyttäjälle ikkuna, missä kerrottaan että kategoria on tavoittelematon
                 if(!possible_combination[index] & !category_selected[index] & !category_locked[index] & round_started){
                     string message = $"Kategoria '{categoryClickEvent?.Text}' voi olla tavoittelematon noppien arvon perusteella. \n\nJos hyäksyt tulokset, voit saada 0 pistettä.";
                     const string title = "Tavoittelematon yhdistelmä";
@@ -75,11 +78,11 @@ public partial class YatzyForm{
         }
     }
 
-    // funktio joka luo rajat noppa kategoria painikkeille
-    // jota käytetään myöhemmin kun katgorian alue uudelleen maalataan
-    // näin tehdään jotta combinationsPanel_Paint pystyy suorittamaan
-    // sille määrätyt toiminnot
     private List<Rectangle> createCategoryBorders(){
+        // funktio joka luo rajat noppa kategoria painikkeille
+        // jota käytetään myöhemmin kun katgorian alue uudelleen maalataan
+        // näin tehdään jotta combinationsPanel_Paint pystyy suorittamaan
+        // sille määrätyt toiminnot
         var categoires = getAllCategoryLabels();
 
         Rectangle border = new Rectangle();
