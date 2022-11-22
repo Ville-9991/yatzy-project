@@ -2,9 +2,15 @@ namespace yatzy_project;
 
 public partial class YatzyForm{
 
-    // diceWindow ei tarkoita oikeaa ikkunaa, vaan paneelia, johon heitetyt nopat maalataan
-    private void diceWindow_Paint(object sender, PaintEventArgs e)
-    {
+    private void generateRandomDiceLocations(){
+
+        // kun throwDice_btn on painettu, kutsutaan funktiota, joka arpoo
+        // sijainnit noppakuville
+        //
+        // näin tehdään, koska jos random kutsutaisiin paint eventissä,
+        // random aiheuttaisi hankaluuksia kuvien "staattisuudessa"
+        // koska paint event on ikään kuin "silmukka" joka odttaa ja aktivoituu
+        // heti kun näytölle on piirrettävä
 
         int pointX;
         int pointY;
@@ -21,8 +27,6 @@ public partial class YatzyForm{
         for(int index = 0; index < dices.Count(); index++){
             // suorakulmioiden mittojen määrittäminen/sijainnin arvonta
 
-            // TODO ikkunan pienennettyä, ohjelma lataa funktion uudellen, eli arpoo noppien sijainnit joka kerta eri paikkaan kun ikkuna suljetaan tai avataan
-            // koita keksiä keino miten tältä voisi välttyä että kuvat pysyisivät "paikallaan"
             pointX = rng.Next(0, diceWindow.Size.Width-(img_width*2));
             pointY = rng.Next(0, diceWindow.Size.Height-(img_height*2));
 
@@ -31,21 +35,37 @@ public partial class YatzyForm{
 
             storedRectangles.Add(image_dimensions);
 
+        }
+
+        storedRectangles = fixOverlapping(storedRectangles, img_width, img_height);
+
+        // annetaan storedRectangles eli noppakuvien ulottuvuudet diceWindow_Paint fuctiolle piirrettäväksi
+        diceWindow.Paint += (sender, e) => diceWindow_Paint(sender, e, storedRectangles);
+        
+    }
+
+    private static List<Rectangle> fixOverlapping(List<Rectangle> rectangles, int width, int height){
+
+        for(int index = 0; index < rectangles.Count(); index++){
+
             // käydään jokainen suorakulmio läpi, jotta voidaan välttyä kuvien päällekkäisyydeltä
-            foreach(Rectangle rect in storedRectangles.Where((a,b) => b != index).ToList()){ // lambda, joka ohittaa "tämän hetkisen" kierroksen suorakulmion (index), jotta vältytään "itseeän" vertaamasta "itseensä"
+            foreach(Rectangle rect in rectangles.Where((a,b) => b != index).ToList()){ // lambda, joka ohittaa "tämän hetkisen" kierroksen suorakulmion (index), jotta vältytään "itseeän" vertaamasta "itseensä"
 
-                if(storedRectangles[index].IntersectsWith(rect)){
+                if(rectangles[index].IntersectsWith(rect)){
 
-                    if(storedRectangles[index].X < rect.X && storedRectangles[index].Y > rect.Y){
-                        storedRectangles[index] = new Rectangle(storedRectangles[index].X + 50, storedRectangles[index].Y, img_width, img_height);
+                    // en ymmärrä tätä enkä ota credtittiä näistä
+                    // https://math.stackexchange.com/questions/99565/simplest-way-to-calculate-the-intersect-area-of-two-rectangles
+                    int x_overlap = Math.Max(0, Math.Min(rectangles[index].Right, rect.Right) - Math.Max(rectangles[index].Left, rect.Left));
+                    int y_overlap = Math.Max(0, Math.Min(rectangles[index].Bottom, rect.Bottom) - Math.Max(rectangles[index].Top, rect.Top));
+
+                    if(x_overlap > 5){
+                        rectangles[index] = new Rectangle(rectangles[index].X + x_overlap, rectangles[index].Y, width, height);
                     }
-
-                    else if(storedRectangles[index].X > rect.X && storedRectangles[index].Y < rect.Y){
-                        storedRectangles[index] = new Rectangle(storedRectangles[index].X, storedRectangles[index].Y + 50, img_width, img_height);
+                    else if(y_overlap > 5){
+                        rectangles[index] = new Rectangle(rectangles[index].X, rectangles[index].Y + y_overlap / 2, width, height);
                     }
-
-                    else if(storedRectangles[index].X == rect.X && storedRectangles[index].Y == rect.Y){
-                        storedRectangles[index] = new Rectangle(storedRectangles[index].X + 50, storedRectangles[index].Y + 50, img_width, img_height);
+                    else if(x_overlap > 5 && y_overlap > 5){
+                        rectangles[index] = new Rectangle(rectangles[index].X + x_overlap, rectangles[index].Y + y_overlap, width, height);
                     }
 
                 }
@@ -54,11 +74,22 @@ public partial class YatzyForm{
 
         }
 
-        for(int index = 0; index < dices.Count(); index++){
-            if(!dice_selected[index]){ // ainosataan valitsemattomat nopat piirretään, koska ei haluta piirtää jokaista noppa turhaan vaikka käyttäjä olisi jo valinnut vaikka yhden nopan
-                e.Graphics.DrawImage(dices[index].DrawDice(), storedRectangles[index]); // kuvien sijoittaminen suorakulmioiden mukaan
+        return rectangles;
+    }
+
+
+    // diceWindow ei tarkoita oikeaa ikkunaa, vaan paneelia, johon heitetyt nopat maalataan
+    private void diceWindow_Paint(object? sender, PaintEventArgs e, List<Rectangle>dimensions)
+    {
+        for(int index = 0; index < dimensions.Count(); index++){
+            // ainosataan valitsemattomat nopat piirretään, 
+            // koska ei haluta piirtää jokaista noppa turhaan vaikka käyttäjä olisi jo valinnut vaikka yhden nopan
+            if(!dice_selected[index]){
+                e.Graphics.DrawImage(dices[index].DrawDice(), dimensions[index]); // kuvien sijoittaminen suorakulmioiden mukaan
             }
         }
+
+        dimensions.Clear();
 
     }
 

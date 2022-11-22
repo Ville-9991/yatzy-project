@@ -21,6 +21,8 @@ public partial class YatzyForm{
         enableDiceButtons();
         lockAllCategories();
 
+        generateRandomDiceLocations();
+
         // Dice luokan value on aluksi 1, ja sen drawDice metodi,
         // piirtää nopan value arvolla (tässä tapauksessa viisi 1-arvoista noppaa)
         // heti kun diceWindow_Paint eventti latautuu, joten diceWindow on aluksi false

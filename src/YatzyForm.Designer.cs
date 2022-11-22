@@ -123,7 +123,7 @@ partial class YatzyForm
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label2.Font = new System.Drawing.Font("Helvetica", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             label2.Location = new System.Drawing.Point(19, 586);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(326, 22);
@@ -146,11 +146,11 @@ partial class YatzyForm
             this.diceWindow.Size = new System.Drawing.Size(654, 404);
             this.diceWindow.TabIndex = 0;
             this.diceWindow.Visible = false;
-            this.diceWindow.Paint += new System.Windows.Forms.PaintEventHandler(this.diceWindow_Paint);
+            // this.diceWindow.Paint += new System.Windows.Forms.PaintEventHandler(this.diceWindow_Paint);
             // 
             // throwDice_btn
             // 
-            this.throwDice_btn.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.throwDice_btn.Font = new System.Drawing.Font("Helvetica", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.throwDice_btn.Location = new System.Drawing.Point(482, 454);
             this.throwDice_btn.Name = "throwDice_btn";
             this.throwDice_btn.Size = new System.Drawing.Size(98, 46);
@@ -162,7 +162,7 @@ partial class YatzyForm
             // allowedNumberOfThrows
             // 
             this.allowedNumberOfThrows.AutoSize = true;
-            this.allowedNumberOfThrows.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.allowedNumberOfThrows.Font = new System.Drawing.Font("Helvetica", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.allowedNumberOfThrows.Location = new System.Drawing.Point(586, 460);
             this.allowedNumberOfThrows.Name = "allowedNumberOfThrows";
             this.allowedNumberOfThrows.Size = new System.Drawing.Size(31, 33);
@@ -230,7 +230,7 @@ partial class YatzyForm
             // acceptResults_btn
             // 
             this.acceptResults_btn.Enabled = false;
-            this.acceptResults_btn.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.acceptResults_btn.Font = new System.Drawing.Font("Helvetica", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.acceptResults_btn.Location = new System.Drawing.Point(482, 506);
             this.acceptResults_btn.Name = "acceptResults_btn";
             this.acceptResults_btn.Size = new System.Drawing.Size(98, 57);
@@ -268,7 +268,7 @@ partial class YatzyForm
             // ykkoset_resultsLabel
             // 
             this.ykkoset_resultsLabel.AutoSize = true;
-            this.ykkoset_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ykkoset_resultsLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ykkoset_resultsLabel.Location = new System.Drawing.Point(9, 9);
             this.ykkoset_resultsLabel.Name = "ykkoset_resultsLabel";
             this.ykkoset_resultsLabel.Size = new System.Drawing.Size(29, 32);
@@ -278,7 +278,7 @@ partial class YatzyForm
             // kakkoset_resultsLabel
             // 
             this.kakkoset_resultsLabel.AutoSize = true;
-            this.kakkoset_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.kakkoset_resultsLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.kakkoset_resultsLabel.Location = new System.Drawing.Point(9, 41);
             this.kakkoset_resultsLabel.Name = "kakkoset_resultsLabel";
             this.kakkoset_resultsLabel.Size = new System.Drawing.Size(29, 32);
@@ -288,7 +288,7 @@ partial class YatzyForm
             // kolmoset_resultsLabel
             // 
             this.kolmoset_resultsLabel.AutoSize = true;
-            this.kolmoset_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.kolmoset_resultsLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.kolmoset_resultsLabel.Location = new System.Drawing.Point(9, 73);
             this.kolmoset_resultsLabel.Name = "kolmoset_resultsLabel";
             this.kolmoset_resultsLabel.Size = new System.Drawing.Size(29, 32);
@@ -298,7 +298,7 @@ partial class YatzyForm
             // neloset_resultsLabel
             // 
             this.neloset_resultsLabel.AutoSize = true;
-            this.neloset_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.neloset_resultsLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.neloset_resultsLabel.Location = new System.Drawing.Point(9, 105);
             this.neloset_resultsLabel.Name = "neloset_resultsLabel";
             this.neloset_resultsLabel.Size = new System.Drawing.Size(29, 32);
@@ -308,7 +308,7 @@ partial class YatzyForm
             // viitoset_resultsLabel
             // 
             this.viitoset_resultsLabel.AutoSize = true;
-            this.viitoset_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.viitoset_resultsLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.viitoset_resultsLabel.Location = new System.Drawing.Point(9, 137);
             this.viitoset_resultsLabel.Name = "viitoset_resultsLabel";
             this.viitoset_resultsLabel.Size = new System.Drawing.Size(29, 32);
@@ -318,7 +318,7 @@ partial class YatzyForm
             // kuutoset_resultsLabel
             // 
             this.kuutoset_resultsLabel.AutoSize = true;
-            this.kuutoset_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.kuutoset_resultsLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.kuutoset_resultsLabel.Location = new System.Drawing.Point(9, 169);
             this.kuutoset_resultsLabel.Name = "kuutoset_resultsLabel";
             this.kuutoset_resultsLabel.Size = new System.Drawing.Size(29, 32);
@@ -328,7 +328,7 @@ partial class YatzyForm
             // valisumma_resultsLabel
             // 
             this.valisumma_resultsLabel.AutoSize = true;
-            this.valisumma_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.valisumma_resultsLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.valisumma_resultsLabel.Location = new System.Drawing.Point(9, 211);
             this.valisumma_resultsLabel.Name = "valisumma_resultsLabel";
             this.valisumma_resultsLabel.Size = new System.Drawing.Size(29, 32);
@@ -338,7 +338,7 @@ partial class YatzyForm
             // bonus_resultsLabel
             // 
             this.bonus_resultsLabel.AutoSize = true;
-            this.bonus_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.bonus_resultsLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.bonus_resultsLabel.Location = new System.Drawing.Point(9, 243);
             this.bonus_resultsLabel.Name = "bonus_resultsLabel";
             this.bonus_resultsLabel.Size = new System.Drawing.Size(29, 32);
@@ -361,7 +361,7 @@ partial class YatzyForm
             // ykkosetLabel
             // 
             this.ykkosetLabel.AutoSize = true;
-            this.ykkosetLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ykkosetLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ykkosetLabel.Location = new System.Drawing.Point(12, 12);
             this.ykkosetLabel.Name = "ykkosetLabel";
             this.ykkosetLabel.Size = new System.Drawing.Size(118, 32);
@@ -371,7 +371,7 @@ partial class YatzyForm
             // kakkosetLabel
             // 
             this.kakkosetLabel.AutoSize = true;
-            this.kakkosetLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.kakkosetLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.kakkosetLabel.Location = new System.Drawing.Point(12, 44);
             this.kakkosetLabel.Name = "kakkosetLabel";
             this.kakkosetLabel.Size = new System.Drawing.Size(135, 32);
@@ -381,7 +381,7 @@ partial class YatzyForm
             // kolmosetLabel
             // 
             this.kolmosetLabel.AutoSize = true;
-            this.kolmosetLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.kolmosetLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.kolmosetLabel.Location = new System.Drawing.Point(12, 76);
             this.kolmosetLabel.Name = "kolmosetLabel";
             this.kolmosetLabel.Size = new System.Drawing.Size(141, 32);
@@ -391,7 +391,7 @@ partial class YatzyForm
             // nelosetLabel
             // 
             this.nelosetLabel.AutoSize = true;
-            this.nelosetLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.nelosetLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nelosetLabel.Location = new System.Drawing.Point(12, 108);
             this.nelosetLabel.Name = "nelosetLabel";
             this.nelosetLabel.Size = new System.Drawing.Size(113, 32);
@@ -401,7 +401,7 @@ partial class YatzyForm
             // viitosetLabel
             // 
             this.viitosetLabel.AutoSize = true;
-            this.viitosetLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.viitosetLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.viitosetLabel.Location = new System.Drawing.Point(12, 140);
             this.viitosetLabel.Name = "viitosetLabel";
             this.viitosetLabel.Size = new System.Drawing.Size(113, 32);
@@ -411,7 +411,7 @@ partial class YatzyForm
             // kuutosetLabel
             // 
             this.kuutosetLabel.AutoSize = true;
-            this.kuutosetLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.kuutosetLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.kuutosetLabel.Location = new System.Drawing.Point(12, 172);
             this.kuutosetLabel.Name = "kuutosetLabel";
             this.kuutosetLabel.Size = new System.Drawing.Size(133, 32);
@@ -421,7 +421,7 @@ partial class YatzyForm
             // bonusLabel
             // 
             this.bonusLabel.AutoSize = true;
-            this.bonusLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.bonusLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.bonusLabel.Location = new System.Drawing.Point(12, 245);
             this.bonusLabel.Name = "bonusLabel";
             this.bonusLabel.Size = new System.Drawing.Size(254, 32);
@@ -431,7 +431,7 @@ partial class YatzyForm
             // valisummaLabel
             // 
             this.valisummaLabel.AutoSize = true;
-            this.valisummaLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.valisummaLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.valisummaLabel.Location = new System.Drawing.Point(12, 213);
             this.valisummaLabel.Name = "valisummaLabel";
             this.valisummaLabel.Size = new System.Drawing.Size(162, 32);
@@ -468,7 +468,7 @@ partial class YatzyForm
             // pari_resultsLabel
             // 
             this.pari_resultsLabel.AutoSize = true;
-            this.pari_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.pari_resultsLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.pari_resultsLabel.Location = new System.Drawing.Point(9, 9);
             this.pari_resultsLabel.Name = "pari_resultsLabel";
             this.pari_resultsLabel.Size = new System.Drawing.Size(29, 32);
@@ -478,7 +478,7 @@ partial class YatzyForm
             // kaksi_paria_resultsLabel
             // 
             this.kaksi_paria_resultsLabel.AutoSize = true;
-            this.kaksi_paria_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.kaksi_paria_resultsLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.kaksi_paria_resultsLabel.Location = new System.Drawing.Point(9, 41);
             this.kaksi_paria_resultsLabel.Name = "kaksi_paria_resultsLabel";
             this.kaksi_paria_resultsLabel.Size = new System.Drawing.Size(29, 32);
@@ -488,7 +488,7 @@ partial class YatzyForm
             // kolme_samaa_resultsLabel
             // 
             this.kolme_samaa_resultsLabel.AutoSize = true;
-            this.kolme_samaa_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.kolme_samaa_resultsLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.kolme_samaa_resultsLabel.Location = new System.Drawing.Point(9, 73);
             this.kolme_samaa_resultsLabel.Name = "kolme_samaa_resultsLabel";
             this.kolme_samaa_resultsLabel.Size = new System.Drawing.Size(29, 32);
@@ -498,7 +498,7 @@ partial class YatzyForm
             // nelja_samaa_resultsLabel
             // 
             this.nelja_samaa_resultsLabel.AutoSize = true;
-            this.nelja_samaa_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.nelja_samaa_resultsLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nelja_samaa_resultsLabel.Location = new System.Drawing.Point(9, 105);
             this.nelja_samaa_resultsLabel.Name = "nelja_samaa_resultsLabel";
             this.nelja_samaa_resultsLabel.Size = new System.Drawing.Size(29, 32);
@@ -508,7 +508,7 @@ partial class YatzyForm
             // pieni_suora_resultsLabel
             // 
             this.pieni_suora_resultsLabel.AutoSize = true;
-            this.pieni_suora_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.pieni_suora_resultsLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.pieni_suora_resultsLabel.Location = new System.Drawing.Point(9, 137);
             this.pieni_suora_resultsLabel.Name = "pieni_suora_resultsLabel";
             this.pieni_suora_resultsLabel.Size = new System.Drawing.Size(29, 32);
@@ -518,7 +518,7 @@ partial class YatzyForm
             // iso_suora_resultsLabel
             // 
             this.iso_suora_resultsLabel.AutoSize = true;
-            this.iso_suora_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.iso_suora_resultsLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.iso_suora_resultsLabel.Location = new System.Drawing.Point(9, 169);
             this.iso_suora_resultsLabel.Name = "iso_suora_resultsLabel";
             this.iso_suora_resultsLabel.Size = new System.Drawing.Size(29, 32);
@@ -528,7 +528,7 @@ partial class YatzyForm
             // tayskasi_resultsLabel
             // 
             this.tayskasi_resultsLabel.AutoSize = true;
-            this.tayskasi_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.tayskasi_resultsLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tayskasi_resultsLabel.Location = new System.Drawing.Point(9, 201);
             this.tayskasi_resultsLabel.Name = "tayskasi_resultsLabel";
             this.tayskasi_resultsLabel.Size = new System.Drawing.Size(29, 32);
@@ -538,7 +538,7 @@ partial class YatzyForm
             // sattuma_resultsLabel
             // 
             this.sattuma_resultsLabel.AutoSize = true;
-            this.sattuma_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.sattuma_resultsLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.sattuma_resultsLabel.Location = new System.Drawing.Point(9, 233);
             this.sattuma_resultsLabel.Name = "sattuma_resultsLabel";
             this.sattuma_resultsLabel.Size = new System.Drawing.Size(29, 32);
@@ -548,7 +548,7 @@ partial class YatzyForm
             // yatzy_resultsLabel
             // 
             this.yatzy_resultsLabel.AutoSize = true;
-            this.yatzy_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.yatzy_resultsLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.yatzy_resultsLabel.Location = new System.Drawing.Point(9, 265);
             this.yatzy_resultsLabel.Name = "yatzy_resultsLabel";
             this.yatzy_resultsLabel.Size = new System.Drawing.Size(29, 32);
@@ -558,7 +558,7 @@ partial class YatzyForm
             // summa_resultsLabel
             // 
             this.summa_resultsLabel.AutoSize = true;
-            this.summa_resultsLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.summa_resultsLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.summa_resultsLabel.Location = new System.Drawing.Point(9, 307);
             this.summa_resultsLabel.Name = "summa_resultsLabel";
             this.summa_resultsLabel.Size = new System.Drawing.Size(29, 32);
@@ -584,7 +584,7 @@ partial class YatzyForm
             // pariLabel
             // 
             this.pariLabel.AutoSize = true;
-            this.pariLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.pariLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.pariLabel.Location = new System.Drawing.Point(5, 8);
             this.pariLabel.Name = "pariLabel";
             this.pariLabel.Size = new System.Drawing.Size(66, 32);
@@ -594,7 +594,7 @@ partial class YatzyForm
             // kaksi_pariaLabel
             // 
             this.kaksi_pariaLabel.AutoSize = true;
-            this.kaksi_pariaLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.kaksi_pariaLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.kaksi_pariaLabel.Location = new System.Drawing.Point(5, 40);
             this.kaksi_pariaLabel.Name = "kaksi_pariaLabel";
             this.kaksi_pariaLabel.Size = new System.Drawing.Size(161, 32);
@@ -604,7 +604,7 @@ partial class YatzyForm
             // kolme_samaaLabel
             // 
             this.kolme_samaaLabel.AutoSize = true;
-            this.kolme_samaaLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.kolme_samaaLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.kolme_samaaLabel.Location = new System.Drawing.Point(5, 72);
             this.kolme_samaaLabel.Name = "kolme_samaaLabel";
             this.kolme_samaaLabel.Size = new System.Drawing.Size(194, 32);
@@ -614,7 +614,7 @@ partial class YatzyForm
             // nelja_samaaLabel
             // 
             this.nelja_samaaLabel.AutoSize = true;
-            this.nelja_samaaLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.nelja_samaaLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nelja_samaaLabel.Location = new System.Drawing.Point(5, 104);
             this.nelja_samaaLabel.Name = "nelja_samaaLabel";
             this.nelja_samaaLabel.Size = new System.Drawing.Size(174, 32);
@@ -624,7 +624,7 @@ partial class YatzyForm
             // pieni_suoraLabel
             // 
             this.pieni_suoraLabel.AutoSize = true;
-            this.pieni_suoraLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.pieni_suoraLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.pieni_suoraLabel.Location = new System.Drawing.Point(5, 136);
             this.pieni_suoraLabel.Name = "pieni_suoraLabel";
             this.pieni_suoraLabel.Size = new System.Drawing.Size(163, 32);
@@ -634,7 +634,7 @@ partial class YatzyForm
             // iso_suoraLabel
             // 
             this.iso_suoraLabel.AutoSize = true;
-            this.iso_suoraLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.iso_suoraLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.iso_suoraLabel.Location = new System.Drawing.Point(5, 168);
             this.iso_suoraLabel.Name = "iso_suoraLabel";
             this.iso_suoraLabel.Size = new System.Drawing.Size(137, 32);
@@ -644,7 +644,7 @@ partial class YatzyForm
             // tayskasiLabel
             // 
             this.tayskasiLabel.AutoSize = true;
-            this.tayskasiLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.tayskasiLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tayskasiLabel.Location = new System.Drawing.Point(5, 200);
             this.tayskasiLabel.Name = "tayskasiLabel";
             this.tayskasiLabel.Size = new System.Drawing.Size(130, 32);
@@ -654,7 +654,7 @@ partial class YatzyForm
             // sattumaLabel
             // 
             this.sattumaLabel.AutoSize = true;
-            this.sattumaLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.sattumaLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.sattumaLabel.Location = new System.Drawing.Point(5, 232);
             this.sattumaLabel.Name = "sattumaLabel";
             this.sattumaLabel.Size = new System.Drawing.Size(123, 32);
@@ -664,7 +664,7 @@ partial class YatzyForm
             // yatzyLabel
             // 
             this.yatzyLabel.AutoSize = true;
-            this.yatzyLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.yatzyLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.yatzyLabel.Location = new System.Drawing.Point(12, 264);
             this.yatzyLabel.Name = "yatzyLabel";
             this.yatzyLabel.Size = new System.Drawing.Size(84, 32);
@@ -674,7 +674,7 @@ partial class YatzyForm
             // summaLabel
             // 
             this.summaLabel.AutoSize = true;
-            this.summaLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.summaLabel.Font = new System.Drawing.Font("Helvetica", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.summaLabel.Location = new System.Drawing.Point(11, 311);
             this.summaLabel.Name = "summaLabel";
             this.summaLabel.Size = new System.Drawing.Size(116, 32);
@@ -752,7 +752,7 @@ partial class YatzyForm
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label4.Font = new System.Drawing.Font("Helvetica", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             label4.Location = new System.Drawing.Point(19, 608);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(338, 22);
@@ -775,7 +775,7 @@ partial class YatzyForm
             this.Controls.Add(this.acceptResults_btn);
             this.Controls.Add(this.throwDice_btn);
             this.Controls.Add(this.diceWindow);
-            this.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Font = new System.Drawing.Font("Helvetica", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
