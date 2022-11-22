@@ -53,7 +53,6 @@ public partial class YatzyForm{
 
                 if(rectangles[index].IntersectsWith(rect)){
 
-                    // en ymmärrä tätä enkä ota credtittiä näistä
                     // https://math.stackexchange.com/questions/99565/simplest-way-to-calculate-the-intersect-area-of-two-rectangles
                     int x_overlap = Math.Max(0, Math.Min(rectangles[index].Right, rect.Right) - Math.Max(rectangles[index].Left, rect.Left));
                     int y_overlap = Math.Max(0, Math.Min(rectangles[index].Bottom, rect.Bottom) - Math.Max(rectangles[index].Top, rect.Top));
